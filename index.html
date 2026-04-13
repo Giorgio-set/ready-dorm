@@ -228,3 +228,143 @@
             <div class="sos-phone">
               <div class="sp-top">
                 <span class="sp-status-dot"></span>
+                <strong>ReadyDorm</strong>
+                <small id="sosTimeDisplay">14:32</small>
+              </div>
+
+              <div class="sp-screen" id="sosScreen">
+                <!-- estado normal -->
+                <div id="sosStateNormal">
+                  <p class="sp-label">Â¿EstÃ¡s en peligro?</p>
+                  <div class="sos-hold-btn" id="sosBtnHold"
+                       aria-label="Mantener presionado para activar SOS">
+                    <span class="shb-ring"></span>
+                    <span class="shb-ring r2"></span>
+                    <div class="shb-core">
+                      <span id="sosBtnLabel">SOS</span>
+                      <small id="sosBtnSub">Mantener 3s</small>
+                    </div>
+                  </div>
+                  <div class="sos-secondary-actions">
+                    <button class="ssa-btn safe-btn" id="safeBtn" onclick="reportSafe()">
+                      âœ“ Estoy a salvo
+                    </button>
+                    <button class="ssa-btn voice-btn" id="voiceBtn" onclick="activateVoice()">
+                      ðŸŽ¤ Voz
+                    </button>
+                    <button class="ssa-btn torch-btn" id="torchBtn" onclick="toggleTorch()">
+                      ðŸ”¦ Linterna
+                    </button>
+                  </div>
+                  <button class="ssa-btn proximity-btn" onclick="showProximityAlert()" style="margin-top:8px;width:100%;text-align:center;">
+                    ðŸ”” Simular alerta de piso
+                  </button>
+                </div>
+
+                <!-- estado: SOS ENVIADO -->
+                <div id="sosStateSent" style="display:none;text-align:center;">
+                  <div class="sp-sent-icon">ðŸ†˜</div>
+                  <h3 style="color:#FA6A63;margin:12px 0 6px;">SOS Enviado</h3>
+                  <p style="font-size:13px;color:#6D7B8A;">3 contactos notificados<br>UbicaciÃ³n GPS compartida</p>
+                  <button class="sos-cancel-btn" id="sosCancelBtn" onclick="cancelSOS()">
+                    ðŸš« Cancelar (falsa alarma)
+                  </button>
+                </div>
+
+                <!-- estado: CANCELADO -->
+                <div id="sosStateCancelled" style="display:none;text-align:center;">
+                  <div class="sp-sent-icon">âœ…</div>
+                  <h3 style="color:#2EC5B6;margin:12px 0 6px;">Alerta cancelada</h3>
+                  <p style="font-size:13px;color:#6D7B8A;">Tus contactos han sido notificados<br>que fue una falsa alarma.</p>
+                  <button class="btn btn-soft" style="margin-top:16px;font-size:13px;" onclick="resetSOS()">Volver al inicio</button>
+                </div>
+
+                <!-- estado: A SALVO -->
+                <div id="sosStateSafe" style="display:none;text-align:center;">
+                  <div class="sp-sent-icon">ðŸ’š</div>
+                  <h3 style="color:#2EC5B6;margin:12px 0 6px;">Reporte enviado</h3>
+                  <p style="font-size:13px;color:#6D7B8A;">"Mateo reporta que estÃ¡ bien"<br>â€” enviado a tu familia</p>
+                  <button class="btn btn-soft" style="margin-top:16px;font-size:13px;" onclick="resetSOS()">Volver al inicio</button>
+                </div>
+
+                <!-- estado: VOZ -->
+                <div id="sosStateVoice" style="display:none;text-align:center;">
+                  <div class="sp-voice-wave">
+                    <span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                  <p style="margin:12px 0 4px;font-weight:600;">Escuchando...</p>
+                  <small style="color:#6D7B8A;">Di: "ReadyDorm activa SOS"</small>
+                  <button class="btn btn-soft" style="margin-top:16px;font-size:13px;" onclick="resetSOS()">Cancelar</button>
+                </div>
+              </div>
+
+              <div class="sp-bottom">
+                <span>GPS activo</span>
+                <span id="torchStatus">Linterna: apagada</span>
+              </div>
+            </div>
+
+            <p class="sos-hint">ðŸ‘† MantÃ©n presionado el botÃ³n rojo 3 segundos</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= NOSOTROS ============= -->
+    <section class="section about-section" id="nosotros">
+      <div class="container split-grid">
+        <div class="section-copy reveal">
+          <span class="section-kicker">Nosotros</span>
+          <h2>Una plataforma para que vivir independiente tambiÃ©n sea vivir preparado.</h2>
+          <p>
+            ReadyDorm nace porque muchos estudiantes y jÃ³venes viven solos o con roommates, pero no siempre tienen un plan claro ante sismos, incendios, fugas de gas o cortes de luz.
+          </p>
+          <p>
+            La propuesta combina prevenciÃ³n, organizaciÃ³n y respuesta rÃ¡pida con herramientas fÃ¡ciles: contactos, rutas, checklist, simulacros y ayuda cercana en una sola experiencia.
+          </p>
+          <div class="about-actions">
+            <a href="#clinicas" class="btn btn-dark">Buscar ayuda cercana</a>
+            <a href="#sismo" class="text-link">Ver protocolos rÃ¡pidos â†’</a>
+          </div>
+        </div>
+        <div class="about-cards reveal delay-1">
+          <article class="metric-card">
+            <span>01</span>
+            <div>
+              <h3>PrevenciÃ³n</h3>
+              <p>Checklist, mochila, roles y rutas preparadas antes del riesgo.</p>
+            </div>
+          </article>
+          <article class="metric-card highlighted">
+            <span>02</span>
+            <div>
+              <h3>Respuesta rÃ¡pida</h3>
+              <p>Indicaciones claras para actuar sin perder tiempo durante una emergencia real.</p>
+            </div>
+          </article>
+          <article class="metric-card">
+            <span>03</span>
+            <div>
+              <h3>Ayuda cercana</h3>
+              <p>Mapa simulado con clÃ­nicas, rutas visuales y centros de atenciÃ³n.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============= PERFIL Y CONTACTOS (HU_01-04, HU_33, HU_36) ============= -->
+    <section class="section profile-section soft-blue" id="perfil">
+      <div class="container">
+        <div class="section-heading reveal" style="text-align:center;">
+          <span class="section-kicker">Perfil y seguridad</span>
+          <h2>Tu informaciÃ³n mÃ©dica y contactos, siempre disponibles.</h2>
+          <p>Configura tu ficha mÃ©dica y vincula a tus contactos de confianza para que todo estÃ© listo cuando mÃ¡s lo necesitas.</p>
+        </div>
+        <div class="profile-grid reveal delay-1">
+
+          <!-- Ficha mÃ©dica HU_01 -->
+          <div class="profile-card">
+            <div class="pc-header">
+              <span class="pc-icon">ðŸ©º</span>
