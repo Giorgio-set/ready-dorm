@@ -1,0 +1,220 @@
+﻿/* ============================================================
+   READYDORM â€” STYLE.CSS
+   Sistema de diseÃ±o SafetyTech residencial
+   ============================================================ */
+
+/* -----------------------------
+   1. VARIABLES Y TOKENS
+   ----------------------------- */
+:root {
+  /* Paleta principal */
+  --primary: #0E3B64;
+  --primary-dark: #0A3254;
+  --primary-deep: #082B49;
+  --alert: #FA6A63;
+  --alert-dark: #E95A55;
+  --support: #2EC5B6;
+  --support-soft: #DDF7F3;
+  --accent: #F4D45B;
+  --accent-soft: #FDF3C8;
+
+  /* Superficies */
+  --surface: #FFFFFF;
+  --surface-alt: #F4F7FB;
+  --surface-soft: #EEF3F8;
+  --text: #18324A;
+  --muted: #6D7B8A;
+  --border: #D9E2EC;
+  --shadow: rgba(14, 59, 100, 0.08);
+
+  /* Layout */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --container: 1200px;
+  --shadow-soft: 0 12px 30px rgba(14, 59, 100, 0.08);
+  --shadow-md: 0 20px 50px rgba(14, 59, 100, 0.12);
+  --shadow-lg: 0 30px 70px rgba(14, 59, 100, 0.18);
+  --transition: 0.25s ease;
+}
+
+/* -----------------------------
+   2. RESET Y BASE
+   ----------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background: var(--surface);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button, input, select, textarea { font-family: inherit; }
+ul { list-style: none; }
+
+.container {
+  width: min(100% - 40px, var(--container));
+  margin-inline: auto;
+}
+
+.section {
+  padding: 100px 0;
+  position: relative;
+}
+
+/* -----------------------------
+   3. TIPOGRAFÃA
+   ----------------------------- */
+h1, h2, h3, h4 {
+  color: var(--primary-deep);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h1 { font-size: clamp(2.2rem, 4.4vw, 3.6rem); }
+h2 { font-size: clamp(1.8rem, 3.2vw, 2.7rem); }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1rem; }
+
+p { color: var(--muted); }
+
+/* -----------------------------
+   4. COMPONENTES â€” BOTONES
+   ----------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+  background: var(--alert);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(250, 106, 99, 0.32);
+}
+.btn-primary:hover { background: var(--alert-dark); box-shadow: 0 14px 28px rgba(250, 106, 99, 0.38); }
+
+.btn-dark {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(14, 59, 100, 0.18);
+}
+.btn-dark:hover { background: var(--primary-dark); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--primary);
+  border: 1.5px solid var(--border);
+}
+.btn-ghost:hover { background: var(--surface-soft); border-color: var(--primary); }
+
+.btn-soft {
+  background: var(--surface-soft);
+  color: var(--primary);
+}
+.btn-soft:hover { background: #E3EBF3; }
+
+.btn-glass {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.22);
+}
+.btn-glass:hover { background: rgba(255,255,255,0.16); }
+
+.btn-large { padding: 16px 28px; font-size: 1rem; }
+.btn-sm { padding: 10px 16px; font-size: 0.88rem; }
+.btn-full { width: 100%; }
+
+.text-link {
+  color: var(--alert);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--transition);
+}
+.text-link:hover { color: var(--alert-dark); }
+
+/* -----------------------------
+   5. PILLS / KICKERS / LABELS
+   ----------------------------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.pill-primary { background: var(--surface-soft); color: var(--primary); }
+.pill-alert { background: #FFE4E2; color: var(--alert-dark); }
+.pill-support { background: var(--support-soft); color: #128B7F; }
+.pill-accent { background: var(--accent-soft); color: #8C6A12; }
+.pill-light { background: rgba(255,255,255,0.14); color: #fff; border: 1px solid rgba(255,255,255,0.22); }
+
+.section-kicker {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--surface-soft);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-kicker.light {
+  background: rgba(255,255,255,0.14);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.22);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--support-soft);
+  color: #128B7F;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+.pulse-dot {
+  width: 8px; height: 8px;
+  background: var(--support);
+  border-radius: 50%;
+  position: relative;
+}
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
