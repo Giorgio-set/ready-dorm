@@ -163,3 +163,358 @@
             <div class="seg-features-grid">
               <div class="seg-feat-card"><span class="sf-icon">ðŸ“Š</span><h4>Dashboard de estado</h4><p>Visualiza en tiempo real quiÃ©nes reportaron estar a salvo y quiÃ©nes aÃºn no responden.</p></div>
               <div class="seg-feat-card"><span class="sf-icon">ðŸ“¢</span><h4>Alerta masiva</h4><p>EnvÃ­a una orden de evacuaciÃ³n a todos los residentes del edificio o por sectores.</p></div>
+              <div class="seg-feat-card"><span class="sf-icon">ðŸš’</span><h4>Brigadistas</h4><p>Identifica residentes con capacidad mÃ©dica o de rescate y asÃ­gnales credencial digital.</p></div>
+              <div class="seg-feat-card"><span class="sf-icon">ðŸ§¯</span><h4>Mapa de equipos</h4><p>Registra la ubicaciÃ³n de extintores y mangueras para que los residentes los ubiquen rÃ¡pido.</p></div>
+              <div class="seg-feat-card"><span class="sf-icon">ðŸ“‹</span><h4>Reporte INDECI (PDF)</h4><p>Exporta resultados de simulacros en formato oficial para presentarlo ante autoridades.</p></div>
+              <div class="seg-feat-card"><span class="sf-icon">ðŸ“</span><h4>Puntos de encuentro</h4><p>Marca zonas seguras municipales en el mapa para que todos evacÃºen al mismo lugar.</p></div>
+            </div>
+          </div>
+
+          <!-- CONTACTO -->
+          <div class="seg-panel" id="seg-contacto">
+            <div class="seg-features-grid">
+              <div class="seg-feat-card"><span class="sf-icon">ðŸ””</span><h4>RecepciÃ³n de alerta SOS</h4><p>Recibe notificaciÃ³n de alta prioridad con bypass del modo silencio cuando el residente active el SOS.</p></div>
+              <div class="seg-feat-card"><span class="sf-icon">ðŸ“</span><h4>Ver ubicaciÃ³n GPS</h4><p>Abre el mapa y ve la ubicaciÃ³n exacta del residente en tiempo real para enviar ayuda.</p></div>
+              <div class="seg-feat-card"><span class="sf-icon">ðŸ“ž</span><h4>Llamada rÃ¡pida</h4><p>Un toque para llamar al residente directamente desde la pantalla de alerta activa.</p></div>
+              <div class="seg-feat-card"><span class="sf-icon">ðŸ§­</span><h4>NavegaciÃ³n hacia el residente</h4><p>Traza una ruta desde tu ubicaciÃ³n hasta la del residente para acudir lo mÃ¡s rÃ¡pido posible.</p></div>
+              <div class="seg-feat-card"><span class="sf-icon">ðŸ©º</span><h4>Ficha mÃ©dica de emergencia</h4><p>Accede a los datos mÃ©dicos del residente para informar a los paramÃ©dicos si estÃ¡ inconsciente.</p></div>
+              <div class="seg-feat-card"><span class="sf-icon">ðŸ‘¨â€ðŸ‘©â€ðŸ‘§â€ðŸ‘¦</span><h4>MÃºltiples residentes</h4><p>Monitorea a varios hijos o familiares desde una sola cuenta con perfiles independientes.</p></div>
+            </div>
+          </div>
+
+        </div>
+        <div style="text-align:center;margin-top:2.5rem;" class="reveal">
+          <a href="registro.html" class="btn btn-primary">Elegir mi rol y registrarme</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= FRANJA DE EMERGENCIAS ============= -->
+    <section class="emergency-strip" aria-label="NÃºmeros de emergencia">
+      <div class="container emergency-strip-grid">
+        <h4 class="es-title">NÃºmeros de emergencia</h4>
+        <div class="em-pill"><span>Bomberos</span><strong>116</strong></div>
+        <div class="em-pill"><span>PolicÃ­a</span><strong>105</strong></div>
+        <div class="em-pill"><span>SAMU</span><strong>106</strong></div>
+        <div class="em-pill"><span>Defensa Civil</span><strong>115</strong></div>
+      </div>
+    </section>
+
+
+    <!-- ============= SOS INTERACTIVO (HU_06-10, HU_28) ============= -->
+    <section class="section sos-section" id="sos-demo">
+      <div class="container">
+        <div class="sos-split">
+          <div class="sos-copy reveal">
+            <span class="section-kicker">Sistema de alerta SOS</span>
+            <h2>En una crisis, cada segundo importa.</h2>
+            <p>ReadyDorm te da mÃºltiples formas de pedir ayuda sin importar la situaciÃ³n: por botÃ³n, por voz, o marcando tu estado en segundos.</p>
+            <ul class="sos-feature-list">
+              <li><span class="sfl-dot coral"></span><strong>HU-06</strong> â€” BotÃ³n SOS con 3 segundos de presiÃ³n</li>
+              <li><span class="sfl-dot coral"></span><strong>HU-07</strong> â€” ActivaciÃ³n por voz "ReadyDorm activa SOS"</li>
+              <li><span class="sfl-dot support"></span><strong>HU-08</strong> â€” Reporte "Estoy a salvo" para tranquilizar a la familia</li>
+              <li><span class="sfl-dot coral"></span><strong>HU-09</strong> â€” Alerta automÃ¡tica si hay incendio en tu piso</li>
+              <li><span class="sfl-dot accent"></span><strong>HU-10</strong> â€” Linterna de emergencia integrada en el SOS</li>
+              <li><span class="sfl-dot support"></span><strong>HU-28</strong> â€” CancelaciÃ³n de falsa alarma con PIN</li>
+            </ul>
+          </div>
+
+          <div class="sos-phone-wrap reveal delay-1">
+            <!-- Alerta de proximidad -->
+            <div class="proximity-alert" id="proximityAlert" style="display:none;">
+              <span>âš </span> <strong>Alerta piso 3:</strong> Incendio reportado â€” evacuaciÃ³n inmediata
+            </div>
+
+            <div class="sos-phone">
+              <div class="sp-top">
+                <span class="sp-status-dot"></span>
+                <strong>ReadyDorm</strong>
+                <small id="sosTimeDisplay">14:32</small>
+              </div>
+
+              <div class="sp-screen" id="sosScreen">
+                <!-- estado normal -->
+                <div id="sosStateNormal">
+                  <p class="sp-label">Â¿EstÃ¡s en peligro?</p>
+                  <div class="sos-hold-btn" id="sosBtnHold"
+                       aria-label="Mantener presionado para activar SOS">
+                    <span class="shb-ring"></span>
+                    <span class="shb-ring r2"></span>
+                    <div class="shb-core">
+                      <span id="sosBtnLabel">SOS</span>
+                      <small id="sosBtnSub">Mantener 3s</small>
+                    </div>
+                  </div>
+                  <div class="sos-secondary-actions">
+                    <button class="ssa-btn safe-btn" id="safeBtn" onclick="reportSafe()">
+                      âœ“ Estoy a salvo
+                    </button>
+                    <button class="ssa-btn voice-btn" id="voiceBtn" onclick="activateVoice()">
+                      ðŸŽ¤ Voz
+                    </button>
+                    <button class="ssa-btn torch-btn" id="torchBtn" onclick="toggleTorch()">
+                      ðŸ”¦ Linterna
+                    </button>
+                  </div>
+                  <button class="ssa-btn proximity-btn" onclick="showProximityAlert()" style="margin-top:8px;width:100%;text-align:center;">
+                    ðŸ”” Simular alerta de piso
+                  </button>
+                </div>
+
+                <!-- estado: SOS ENVIADO -->
+                <div id="sosStateSent" style="display:none;text-align:center;">
+                  <div class="sp-sent-icon">ðŸ†˜</div>
+                  <h3 style="color:#FA6A63;margin:12px 0 6px;">SOS Enviado</h3>
+                  <p style="font-size:13px;color:#6D7B8A;">3 contactos notificados<br>UbicaciÃ³n GPS compartida</p>
+                  <button class="sos-cancel-btn" id="sosCancelBtn" onclick="cancelSOS()">
+                    ðŸš« Cancelar (falsa alarma)
+                  </button>
+                </div>
+
+                <!-- estado: CANCELADO -->
+                <div id="sosStateCancelled" style="display:none;text-align:center;">
+                  <div class="sp-sent-icon">âœ…</div>
+                  <h3 style="color:#2EC5B6;margin:12px 0 6px;">Alerta cancelada</h3>
+                  <p style="font-size:13px;color:#6D7B8A;">Tus contactos han sido notificados<br>que fue una falsa alarma.</p>
+                  <button class="btn btn-soft" style="margin-top:16px;font-size:13px;" onclick="resetSOS()">Volver al inicio</button>
+                </div>
+
+                <!-- estado: A SALVO -->
+                <div id="sosStateSafe" style="display:none;text-align:center;">
+                  <div class="sp-sent-icon">ðŸ’š</div>
+                  <h3 style="color:#2EC5B6;margin:12px 0 6px;">Reporte enviado</h3>
+                  <p style="font-size:13px;color:#6D7B8A;">"Mateo reporta que estÃ¡ bien"<br>â€” enviado a tu familia</p>
+                  <button class="btn btn-soft" style="margin-top:16px;font-size:13px;" onclick="resetSOS()">Volver al inicio</button>
+                </div>
+
+                <!-- estado: VOZ -->
+                <div id="sosStateVoice" style="display:none;text-align:center;">
+                  <div class="sp-voice-wave">
+                    <span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                  <p style="margin:12px 0 4px;font-weight:600;">Escuchando...</p>
+                  <small style="color:#6D7B8A;">Di: "ReadyDorm activa SOS"</small>
+                  <button class="btn btn-soft" style="margin-top:16px;font-size:13px;" onclick="resetSOS()">Cancelar</button>
+                </div>
+              </div>
+
+              <div class="sp-bottom">
+                <span>GPS activo</span>
+                <span id="torchStatus">Linterna: apagada</span>
+              </div>
+            </div>
+
+            <p class="sos-hint">ðŸ‘† MantÃ©n presionado el botÃ³n rojo 3 segundos</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= NOSOTROS ============= -->
+    <section class="section about-section" id="nosotros">
+      <div class="container split-grid">
+        <div class="section-copy reveal">
+          <span class="section-kicker">Nosotros</span>
+          <h2>Una plataforma para que vivir independiente tambiÃ©n sea vivir preparado.</h2>
+          <p>
+            ReadyDorm nace porque muchos estudiantes y jÃ³venes viven solos o con roommates, pero no siempre tienen un plan claro ante sismos, incendios, fugas de gas o cortes de luz.
+          </p>
+          <p>
+            La propuesta combina prevenciÃ³n, organizaciÃ³n y respuesta rÃ¡pida con herramientas fÃ¡ciles: contactos, rutas, checklist, simulacros y ayuda cercana en una sola experiencia.
+          </p>
+          <div class="about-actions">
+            <a href="#clinicas" class="btn btn-dark">Buscar ayuda cercana</a>
+            <a href="#sismo" class="text-link">Ver protocolos rÃ¡pidos â†’</a>
+          </div>
+        </div>
+        <div class="about-cards reveal delay-1">
+          <article class="metric-card">
+            <span>01</span>
+            <div>
+              <h3>PrevenciÃ³n</h3>
+              <p>Checklist, mochila, roles y rutas preparadas antes del riesgo.</p>
+            </div>
+          </article>
+          <article class="metric-card highlighted">
+            <span>02</span>
+            <div>
+              <h3>Respuesta rÃ¡pida</h3>
+              <p>Indicaciones claras para actuar sin perder tiempo durante una emergencia real.</p>
+            </div>
+          </article>
+          <article class="metric-card">
+            <span>03</span>
+            <div>
+              <h3>Ayuda cercana</h3>
+              <p>Mapa simulado con clÃ­nicas, rutas visuales y centros de atenciÃ³n.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============= PERFIL Y CONTACTOS (HU_01-04, HU_33, HU_36) ============= -->
+    <section class="section profile-section soft-blue" id="perfil">
+      <div class="container">
+        <div class="section-heading reveal" style="text-align:center;">
+          <span class="section-kicker">Perfil y seguridad</span>
+          <h2>Tu informaciÃ³n mÃ©dica y contactos, siempre disponibles.</h2>
+          <p>Configura tu ficha mÃ©dica y vincula a tus contactos de confianza para que todo estÃ© listo cuando mÃ¡s lo necesitas.</p>
+        </div>
+        <div class="profile-grid reveal delay-1">
+
+          <!-- Ficha mÃ©dica HU_01 -->
+          <div class="profile-card">
+            <div class="pc-header">
+              <span class="pc-icon">ðŸ©º</span>
+              <div>
+                <h3>Ficha mÃ©dica <span class="hu-tag">HU-01</span></h3>
+                <small>Vista por paramÃ©dicos en emergencia</small>
+              </div>
+            </div>
+            <div class="medical-form">
+              <div class="mf-row">
+                <label>Tipo de sangre</label>
+                <select id="bloodType" class="mf-input">
+                  <option>O+</option><option>Oâˆ’</option><option>A+</option>
+                  <option>Aâˆ’</option><option>B+</option><option>AB+</option>
+                </select>
+              </div>
+              <div class="mf-row">
+                <label>Alergias</label>
+                <input type="text" class="mf-input" id="allergies" placeholder="Penicilina, mariscos..." />
+              </div>
+              <div class="mf-row">
+                <label>CondiciÃ³n preexistente</label>
+                <input type="text" class="mf-input" id="condition" placeholder="Asma, hipertensiÃ³n..." />
+              </div>
+              <button class="btn btn-primary" style="width:100%;margin-top:4px;" onclick="saveMedical()">Guardar ficha mÃ©dica</button>
+            </div>
+          </div>
+
+          <!-- Contactos de confianza HU_02 -->
+          <div class="profile-card">
+            <div class="pc-header">
+              <span class="pc-icon">ðŸ‘¥</span>
+              <div>
+                <h3>Contactos SOS <span class="hu-tag">HU-02</span></h3>
+                <small>Reciben tu alerta automÃ¡ticamente</small>
+              </div>
+            </div>
+            <div id="contactList" class="contact-list">
+              <div class="contact-item verified">
+                <div class="ci-avatar">M</div>
+                <div class="ci-info">
+                  <strong>MarÃ­a (MamÃ¡)</strong>
+                  <small>+51 987 654 321 Â· Vinculada</small>
+                </div>
+                <span class="ci-badge">âœ“</span>
+              </div>
+              <div class="contact-item verified">
+                <div class="ci-avatar">P</div>
+                <div class="ci-info">
+                  <strong>Pedro (PapÃ¡)</strong>
+                  <small>+51 976 543 210 Â· Vinculado</small>
+                </div>
+                <span class="ci-badge">âœ“</span>
+              </div>
+            </div>
+            <div class="add-contact-form">
+              <input type="text" class="mf-input" id="newContactName" placeholder="Nombre y parentesco" />
+              <input type="tel" class="mf-input" id="newContactPhone" placeholder="NÃºmero (9 dÃ­gitos)" maxlength="9" />
+              <button class="btn btn-soft" style="width:100%;" onclick="addContact()">+ Vincular contacto</button>
+            </div>
+          </div>
+
+          <!-- GPS + BiometrÃ­a HU_03, HU_04 -->
+          <div class="profile-card">
+            <div class="pc-header">
+              <span class="pc-icon">ðŸ”’</span>
+              <div>
+                <h3>Privacidad y acceso <span class="hu-tag">HU-03 HU-04</span></h3>
+                <small>Controla GPS y autenticaciÃ³n</small>
+              </div>
+            </div>
+            <div class="toggle-list">
+              <div class="toggle-item">
+                <div>
+                  <strong>GPS solo en emergencias</strong>
+                  <small>Compartir ubicaciÃ³n solo al activar SOS</small>
+                </div>
+                <label class="rd-switch">
+                  <input type="checkbox" id="gpsToggle" checked onchange="toggleGPS(this)">
+                  <span class="rd-slider"></span>
+                </label>
+              </div>
+              <div class="toggle-item">
+                <div>
+                  <strong>Acceso biomÃ©trico</strong>
+                  <small>FaceID / Huella para entrar sin clave</small>
+                </div>
+                <label class="rd-switch">
+                  <input type="checkbox" id="bioToggle" onchange="toggleBio(this)">
+                  <span class="rd-slider"></span>
+                </label>
+              </div>
+              <div class="toggle-item">
+                <div>
+                  <strong>Notificaciones crÃ­ticas</strong>
+                  <small>Bypass del modo silencio en SOS</small>
+                </div>
+                <label class="rd-switch">
+                  <input type="checkbox" id="notifToggle" checked onchange="toggleNotif(this)">
+                  <span class="rd-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- MÃºltiples residentes HU_36 -->
+          <div class="profile-card">
+            <div class="pc-header">
+              <span class="pc-icon">ðŸ‘¨â€ðŸ‘©â€ðŸ‘§</span>
+              <div>
+                <h3>Mis residentes <span class="hu-tag">HU-36</span></h3>
+                <small>Monitoreo familiar centralizado</small>
+              </div>
+            </div>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Como contacto, puedes supervisar a varios residentes desde tu cuenta y recibir alertas de cada uno por separado.</p>
+            <div class="resident-selector">
+              <div class="rs-card active" onclick="selectResident(this,'SofÃ­a')">
+                <div class="rs-avatar">S</div>
+                <span>SofÃ­a<br><small>Miraflores</small></span>
+                <span class="rs-status ok">â—</span>
+              </div>
+              <div class="rs-card" onclick="selectResident(this,'Carlos')">
+                <div class="rs-avatar">C</div>
+                <span>Carlos<br><small>San Miguel</small></span>
+                <span class="rs-status warn">â—</span>
+              </div>
+              <div class="rs-card" onclick="selectResident(this,'LucÃ­a')">
+                <div class="rs-avatar">L</div>
+                <span>LucÃ­a<br><small>Surco</small></span>
+                <span class="rs-status ok">â—</span>
+              </div>
+            </div>
+            <p id="residentMsg" style="font-size:13px;margin-top:10px;color:var(--muted);">Monitoreando: <strong>SofÃ­a</strong> â€” Estado: a salvo âœ…</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= SISMO ============= -->
+    <section class="section emergency-detail" id="sismo">
+      <div class="container">
+        <div class="detail-title reveal">
+          <span class="danger-label navy-label">Sismo</span>
+          <h2>QuÃ© hacer ante un sismo</h2>
+          <p>MantÃ©n la calma, ubica zonas seguras y evita decisiones apresuradas. Estas son las acciones para los tres momentos clave.</p>
+        </div>
+        <div class="detail-grid three-cols reveal delay-1">
+          <article class="info-card">
+            <span class="info-icon">Antes</span>
+            <h3>PrepÃ¡rate</h3>
+            <ul>
+              <li>Identifica columnas, muros estructurales y zonas seguras.</li>
+              <li>Ten una mochila de emergencia cerca de la salida.</li>
