@@ -68,3 +68,73 @@ ul { list-style: none; }
   margin-inline: auto;
 }
 
+.section {
+  padding: 100px 0;
+  position: relative;
+}
+
+/* -----------------------------
+   3. TIPOGRAFÃA
+   ----------------------------- */
+h1, h2, h3, h4 {
+  color: var(--primary-deep);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h1 { font-size: clamp(2.2rem, 4.4vw, 3.6rem); }
+h2 { font-size: clamp(1.8rem, 3.2vw, 2.7rem); }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1rem; }
+
+p { color: var(--muted); }
+
+/* -----------------------------
+   4. COMPONENTES â€” BOTONES
+   ----------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+  background: var(--alert);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(250, 106, 99, 0.32);
+}
+.btn-primary:hover { background: var(--alert-dark); box-shadow: 0 14px 28px rgba(250, 106, 99, 0.38); }
+
+.btn-dark {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(14, 59, 100, 0.18);
+}
+.btn-dark:hover { background: var(--primary-dark); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--primary);
+  border: 1.5px solid var(--border);
+}
+.btn-ghost:hover { background: var(--surface-soft); border-color: var(--primary); }
+
+.btn-soft {
+  background: var(--surface-soft);
+  color: var(--primary);
+}
+.btn-soft:hover { background: #E3EBF3; }
+
+.btn-glass {
+  background: rgba(255,255,255,0.08);
