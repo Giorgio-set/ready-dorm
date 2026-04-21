@@ -648,3 +648,113 @@ p { color: var(--muted); }
   border-radius: 50%;
   box-shadow: 0 0 0 4px rgba(255,255,255,0.25);
 }
+.em-pill {
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 999px;
+  padding: 11px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+.em-pill strong {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+/* -----------------------------
+   9. ABOUT / NOSOTROS
+   ----------------------------- */
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 64px;
+  align-items: start;
+}
+.section-copy h2 { margin-bottom: 18px; }
+.section-copy p { margin-bottom: 14px; font-size: 1rem; }
+.about-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+.about-cards { display: grid; gap: 18px; }
+.metric-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 30px;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+  box-shadow: var(--shadow-soft);
+  align-items: start;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.metric-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.metric-card > span {
+  width: 56px; height: 56px;
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.metric-card h3 { font-size: 1.15rem; margin-bottom: 6px; color: var(--primary); }
+.metric-card p { font-size: 0.92rem; }
+
+.metric-card.highlighted {
+  background: var(--primary);
+  border-color: transparent;
+  transform: translateX(28px);
+  color: #fff;
+}
+.metric-card.highlighted:hover { transform: translateX(28px) translateY(-4px); }
+.metric-card.highlighted h3, .metric-card.highlighted p { color: #fff; }
+.metric-card.highlighted p { color: rgba(255,255,255,0.78); }
+.metric-card.highlighted > span { background: rgba(255,255,255,0.12); color: #fff; }
+
+/* -----------------------------
+   10. PROTOCOLOS / EMERGENCY DETAIL
+   ----------------------------- */
+.emergency-detail.soft-blue { background: var(--surface-alt); }
+.emergency-detail.soft-yellow { background: #FBF7EE; }
+.emergency-detail.soft-coral { background: #FFF7F6; }
+.emergency-detail.soft-teal { background: #F1FBF9; }
+
+.detail-title {
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+.detail-title h2 { margin: 14px 0 10px; }
+.detail-title p { font-size: 1rem; }
+
+.danger-label {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.danger-label.navy-label { background: var(--surface-soft); color: var(--primary); }
+.danger-label.coral-label { background: #FFE4E2; color: var(--alert-dark); }
+.danger-label.yellow-label { background: var(--accent-soft); color: #8C6A12; }
+.danger-label.teal-label { background: var(--support-soft); color: #128B7F; }
+
+.detail-grid {
+  display: grid;
+  gap: 22px;
+}
+.detail-grid.three-cols { grid-template-columns: repeat(3, 1fr); }
+.detail-grid.two-cols { grid-template-columns: repeat(2, 1fr); }
