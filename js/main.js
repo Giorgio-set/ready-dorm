@@ -258,3 +258,473 @@ function initMockClinicsMap() {
     userMarker?.classList.add("detected");
     activateClinic(clinics[0]?.id ?? 0);
     statusElement.textContent = "Mapa centrado en tu ubicaciÃ³n simulada";
+    showToast("Vista del mapa centrada correctamente.");
+  });
+
+  zoomInButton?.addEventListener("click", () => {
+    currentZoom = Math.min(125, currentZoom + 25);
+    updateZoomState();
+  });
+
+  zoomOutButton?.addEventListener("click", () => {
+    currentZoom = Math.max(75, currentZoom - 25);
+    updateZoomState();
+  });
+
+  resetViewButton?.addEventListener("click", () => {
+    currentZoom = 100;
+    updateZoomState();
+  });
+
+  pins.forEach((pin) => {
+    pin.addEventListener("click", () => activateClinic(Number(pin.dataset.clinicId)));
+  });
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      currentFilter = button.dataset.filter;
+      filterButtons.forEach((item) => item.classList.toggle("active", item === button));
+      applyFilter(currentFilter);
+    });
+  });
+
+  function applyFilter(filter, showMessage = true) {
+    if (filter === "emergency") {
+      clinics = sourceClinics.filter((c) => c.type === "emergency").sort((a, b) => a.distance - b.distance);
+    } else if (filter === "close") {
+      clinics = [...sourceClinics].sort((a, b) => a.distance - b.distance).slice(0, 3);
+    } else if (filter === "general") {
+      clinics = sourceClinics.filter((c) => c.type === "general").sort((a, b) => a.distance - b.distance);
+    } else {
+      clinics = [...sourceClinics].sort((a, b) => a.distance - b.distance);
+    }
+
+    renderClinicList(clinics);
+    updatePinsVisibility(clinics);
+    activateClinic(clinics[0]?.id ?? 0);
+    if (showMessage) showToast(`Filtro aplicado: ${buttonLabel(filter)}`);
+  }
+
+  function buttonLabel(filter) {
+    const labels = { all: "Todas", emergency: "24h", close: "MÃ¡s cerca", general: "General" };
+    return labels[filter] || "Todas";
+  }
+
+  function updatePinsVisibility(items) {
+    const visibleIds = items.map((item) => item.id);
+    pins.forEach((pin) => {
+      pin.classList.toggle("is-hidden", !visibleIds.includes(Number(pin.dataset.clinicId)));
+    });
+  }
+
+  function updatePinDistanceLabels(items) {
+    items.forEach((clinic) => {
+      const pin = pins.find((item) => Number(item.dataset.clinicId) === clinic.id);
+      const label = pin?.querySelector("small");
+      if (label) label.textContent = `${clinic.distance.toFixed(1)} km`;
+    });
+  }
+
+  function renderClinicList(items) {
+    clinicCount.textContent = `${items.length} resultado${items.length === 1 ? "" : "s"}`;
+    clinicList.innerHTML = items
+      .map((c) => `
+        <article class="clinic-card" data-clinic-id="${c.id}">
+          <h4>${c.name}</h4>
+          <p>${c.address}</p>
+          <div class="clinic-meta">
+            <span class="meta-distance">${c.distance.toFixed(1)} km Â· ${c.eta} min</span>
+            <span class="meta-status ${c.type}">${c.status}</span>
+          </div>
+          <a class="route-link" href="#mockMap">Ver ruta simulada â†’</a>
+        </article>
+      `)
+      .join("");
+
+    clinicList.querySelectorAll(".clinic-card").forEach((card) => {
+      card.addEventListener("click", (e) => {
+        e.preventDefault();
+        activateClinic(Number(card.dataset.clinicId));
+        mockMap.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
+  }
+
+  function activateClinic(id) {
+    const selected = sourceClinics.find((c) => c.id === id) || sourceClinics[0];
+    pins.forEach((pin) => pin.classList.toggle("active", Number(pin.dataset.clinicId) === selected.id));
+    clinicList.querySelectorAll(".clinic-card").forEach((card) => {
+      card.classList.toggle("active", Number(card.dataset.clinicId) === selected.id);
+    });
+
+    if (activeRoute) activeRoute.setAttribute("d", selected.route);
+    if (routeTrail) routeTrail.setAttribute("d", selected.route);
+    if (routeDistance) routeDistance.textContent = `${selected.distance.toFixed(1)} km`;
+    if (routeTime) routeTime.textContent = `${selected.eta} min`;
+    if (nearestClinicName) nearestClinicName.textContent = selected.shortName;
+
+    if (mapInfoCard) {
+      mapInfoCard.querySelector("h3").textContent = selected.name;
+      mapInfoCard.querySelector("p").textContent = selected.address;
+    }
+    statusElement.textContent = `Ruta simulada hacia: ${selected.name}`;
+  }
+
+  function updateZoomState() {
+    mockMap.classList.remove("zoom-in", "zoom-out");
+    if (currentZoom > 100) mockMap.classList.add("zoom-in");
+    if (currentZoom < 100) mockMap.classList.add("zoom-out");
+    if (zoomLabel) zoomLabel.textContent = `${currentZoom}%`;
+    showToast(`Zoom simulado: ${currentZoom}%`);
+  }
+}
+
+
+/* ============================================================
+   READYDORM â€” NUEVAS FUNCIONES (HU_01 â€“ HU_50)
+   ============================================================ */
+
+document.addEventListener("DOMContentLoaded", () => {
+  initSegmentTabs();
+  initSOSDemo();
+  initBSMTabs();
+  initGestorTabs();
+  initResidentGrid();
+  initQuiz();
+  initDrillTimer();
+  updateBackpack();
+});
+
+/* â”€â”€ TABS DE SEGMENTOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function initSegmentTabs() {
+  const bar = document.getElementById("segTabBar");
+  if (!bar) return;
+  bar.querySelectorAll(".seg-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      bar.querySelectorAll(".seg-tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".seg-panel").forEach(p => p.classList.remove("active"));
+      tab.classList.add("active");
+      const panel = document.getElementById("seg-" + tab.dataset.seg);
+      if (panel) panel.classList.add("active");
+    });
+  });
+}
+
+/* â”€â”€ SOS DEMO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function initSOSDemo() {
+  const btn = document.getElementById("sosBtnHold");
+  if (!btn) return;
+  let holdTimer = null;
+  let countdown = 3;
+  let countInterval = null;
+
+  const updateClock = () => {
+    const el = document.getElementById("sosTimeDisplay");
+    if (!el) return;
+    const now = new Date();
+    el.textContent = now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0");
+  };
+  updateClock();
+  setInterval(updateClock, 10000);
+
+  const startHold = () => {
+    countdown = 3;
+    const label = document.getElementById("sosBtnLabel");
+    const sub   = document.getElementById("sosBtnSub");
+    const core  = btn.querySelector(".shb-core");
+    if (label) label.textContent = "3";
+    if (sub)   sub.textContent = "suelta para cancelar";
+    if (core)  core.classList.add("counting");
+    countInterval = setInterval(() => {
+      countdown--;
+      if (countdown <= 0) {
+        clearInterval(countInterval);
+        cancelHold();
+        triggerSOS();
+      } else {
+        if (label) label.textContent = String(countdown);
+      }
+    }, 1000);
+  };
+
+  const cancelHold = () => {
+    clearInterval(countInterval);
+    const label = document.getElementById("sosBtnLabel");
+    const sub   = document.getElementById("sosBtnSub");
+    const core  = btn.querySelector(".shb-core");
+    if (label) label.textContent = "SOS";
+    if (sub)   sub.textContent = "Mantener 3s";
+    if (core)  core.classList.remove("counting");
+  };
+
+  btn.addEventListener("mousedown",  startHold);
+  btn.addEventListener("touchstart", startHold, { passive: true });
+  btn.addEventListener("mouseup",    cancelHold);
+  btn.addEventListener("mouseleave", cancelHold);
+  btn.addEventListener("touchend",   cancelHold);
+}
+
+function triggerSOS() {
+  showSOSState("sosStateSent");
+  showToast("ðŸ†˜ SOS activado â€” 3 contactos notificados con GPS");
+}
+
+function cancelSOS() {
+  showSOSState("sosStateCancelled");
+  showToast("Alerta cancelada â€” tus contactos fueron informados");
+}
+
+function reportSafe() {
+  showSOSState("sosStateSafe");
+  showToast("âœ… Tus contactos saben que estÃ¡s a salvo");
+}
+
+function activateVoice() {
+  showSOSState("sosStateVoice");
+  setTimeout(() => {
+    triggerSOS();
+    showToast("ðŸŽ¤ Voz reconocida: SOS activado automÃ¡ticamente");
+  }, 2800);
+}
+
+function toggleTorch() {
+  const btn    = document.getElementById("torchBtn");
+  const status = document.getElementById("torchStatus");
+  const isOn   = btn?.textContent.includes("apagada") === false && status?.textContent.includes("encendida");
+  if (status) status.textContent = isOn ? "Linterna: apagada" : "Linterna: encendida ðŸ”¦";
+  if (btn)    btn.textContent    = isOn ? "ðŸ”¦ Linterna"      : "ðŸ’¡ Encendida";
+  showToast(isOn ? "Linterna apagada" : "Linterna encendida âœ“");
+}
+
+function showProximityAlert() {
+  const pa = document.getElementById("proximityAlert");
+  if (!pa) return;
+  pa.style.display = "flex";
+  setTimeout(() => { pa.style.display = "none"; }, 4000);
+  showToast("âš ï¸ Alerta de piso activada â€” evacuaciÃ³n inmediata");
+}
+
+function showSOSState(id) {
+  ["sosStateNormal","sosStateSent","sosStateCancelled","sosStateSafe","sosStateVoice"].forEach(s => {
+    const el = document.getElementById(s);
+    if (el) el.style.display = "none";
+  });
+  const target = document.getElementById(id);
+  if (target) target.style.display = "block";
+}
+
+function resetSOS() { showSOSState("sosStateNormal"); }
+
+/* â”€â”€ PERFIL & CONTACTOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function saveMedical() {
+  const bt = document.getElementById("bloodType")?.value;
+  const al = document.getElementById("allergies")?.value;
+  if (!al.trim()) {
+    showToast("âš ï¸ El grupo sanguÃ­neo es requerido para protocolos de emergencia");
+    return;
+  }
+  showToast("âœ… Ficha mÃ©dica actualizada con Ã©xito â€” Tipo " + bt);
+}
+
+function addContact() {
+  const name  = document.getElementById("newContactName")?.value.trim();
+  const phone = document.getElementById("newContactPhone")?.value.trim();
+  if (!name || phone.length !== 9) {
+    showToast("âš ï¸ El nÃºmero debe contener exactamente 9 dÃ­gitos");
+    return;
+  }
+  const list = document.getElementById("contactList");
+  if (!list) return;
+  const initials = name.charAt(0).toUpperCase();
+  const item = document.createElement("div");
+  item.className = "contact-item verified";
+  item.innerHTML = `<div class="ci-avatar">${initials}</div><div class="ci-info"><strong>${name}</strong><small>+51 ${phone} Â· Vinculado</small></div><span class="ci-badge">âœ“</span>`;
+  list.appendChild(item);
+  document.getElementById("newContactName").value = "";
+  document.getElementById("newContactPhone").value = "";
+  showToast("âœ… Contacto vinculado. SMS de invitaciÃ³n enviado.");
+}
+
+function toggleGPS(el)   { showToast(el.checked ? "GPS: solo durante SOS âœ“" : "GPS: compartir siempre"); }
+function toggleBio(el)   { showToast(el.checked ? "Acceso biomÃ©trico activado âœ“" : "BiometrÃ­a desactivada"); }
+function toggleNotif(el) { showToast(el.checked ? "Notificaciones crÃ­ticas: bypass silencio âœ“" : "Notificaciones normales"); }
+
+function selectResident(card, name) {
+  document.querySelectorAll(".rs-card").forEach(c => c.classList.remove("active"));
+  card.classList.add("active");
+  const status = name === "Carlos" ? "âš ï¸ sin reportar" : "âœ… a salvo";
+  const msg = document.getElementById("residentMsg");
+  if (msg) msg.innerHTML = `Monitoreando: <strong>${name}</strong> â€” Estado: ${status}`;
+}
+
+/* â”€â”€ COORDINACIÃ“N â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function confirmTask(btn, name, task) {
+  btn.textContent = "âœ“ Completado";
+  btn.classList.add("done");
+  btn.disabled = true;
+  const msg = document.getElementById("taskConfirmMsg");
+  if (msg) {
+    msg.style.display = "block";
+    msg.innerHTML = `<strong>âœ… ${name}</strong> confirmÃ³: "${task === 'gas' ? 'Llave de gas cortada' : task === 'luz' ? 'Electricidad cortada' : 'EvacuaciÃ³n iniciada'}" â€” Notificado al grupo.`;
+  }
+  showToast(`âœ… Tarea confirmada por ${name}`);
+}
+
+function sendChatMsg() {
+  const input = document.getElementById("chatInput");
+  const box   = document.getElementById("chatBox");
+  if (!input || !box || !input.value.trim()) return;
+  const bubble = document.createElement("div");
+  bubble.className = "chat-bubble sent";
+  bubble.textContent = "TÃº: " + input.value.trim();
+  box.appendChild(bubble);
+  box.scrollTop = box.scrollHeight;
+  input.value = "";
+}
+
+function sendQuick(msg) {
+  const box = document.getElementById("chatBox");
+  if (!box) return;
+  const bubble = document.createElement("div");
+  bubble.className = "chat-bubble sent";
+  bubble.textContent = "TÃº: " + msg;
+  box.appendChild(bubble);
+  box.scrollTop = box.scrollHeight;
+}
+
+function markSupplyDone() {
+  const alert = document.getElementById("supplyAlertDemo");
+  if (alert) { alert.style.background = "rgba(46,197,182,.12)"; alert.querySelector("span.sa-icon").textContent = "âœ…"; alert.querySelector("strong").textContent = "Agua embotellada â€” comprada"; }
+  showToast("âœ… Suministro registrado. Mochila actualizada.");
+}
+
+function registerExpense() {
+  const concept = document.getElementById("expConcept")?.value.trim();
+  const amount  = document.getElementById("expAmount")?.value.trim();
+  if (!concept || !amount) { showToast("âš ï¸ Completa concepto y monto"); return; }
+  const list = document.getElementById("expenseList");
+  if (!list) return;
+  const item = document.createElement("div");
+  item.className = "expense-item";
+  item.innerHTML = `<span>${concept}</span><strong>S/ ${parseFloat(amount).toFixed(2)}</strong>`;
+  list.appendChild(item);
+  document.getElementById("expConcept").value = "";
+  document.getElementById("expAmount").value  = "";
+  showToast(`âœ… Gasto registrado: ${concept} â€” S/ ${amount}`);
+}
+
+function simulateIntrusion() {
+  const status = document.getElementById("intrusionStatus");
+  if (!status) return;
+  status.innerHTML = `<span class="id-dot red"></span><div><strong style="color:var(--alert)">âš  Acceso no autorizado detectado</strong><small>Pasadizo norte â€” 23:42 hrs</small></div>`;
+  showToast("ðŸš¨ Alerta de intruso en pasadizo norte â€” piso 3");
+  setTimeout(() => {
+    status.innerHTML = `<span class="id-dot green"></span><div><strong>Piso seguro</strong><small>Falsa alarma descartada</small></div>`;
+  }, 4000);
+}
+
+/* â”€â”€ MOCHILA INTERACTIVA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function initBSMTabs() {
+  const bar = document.getElementById("bsmTabBar");
+  if (!bar) return;
+  bar.querySelectorAll(".bsm-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      bar.querySelectorAll(".bsm-tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".bsm-panel").forEach(p => p.classList.remove("active"));
+      tab.classList.add("active");
+      const panel = document.getElementById("bsm-" + tab.dataset.bsm);
+      if (panel) panel.classList.add("active");
+    });
+  });
+}
+
+function updateBackpack() {
+  const items    = document.querySelectorAll(".bck-item input");
+  const bar      = document.getElementById("bpBar");
+  const scoreEl  = document.getElementById("backpackScore");
+  if (!items.length) return;
+  const checked  = [...items].filter(i => i.checked).length;
+  const pct      = Math.round((checked / items.length) * 100);
+  if (bar)     bar.style.width = pct + "%";
+  if (scoreEl) scoreEl.textContent = `${checked} / ${items.length} elementos listos`;
+  const scoreValue = document.getElementById("scoreValue");
+  if (scoreValue) {
+    const newScore = Math.round(50 + (pct * 0.5));
+    scoreValue.textContent = newScore;
+    const scoreLabel = document.getElementById("scoreLabel");
+    if (scoreLabel) {
+      if (newScore >= 80)      scoreLabel.textContent = "ðŸŸ¦ Usuario altamente preparado";
+      else if (newScore >= 60) scoreLabel.textContent = "ðŸŸ¨ Usuario preparado";
+      else                     scoreLabel.textContent = "ðŸŸ¥ Necesita mejorar";
+    }
+  }
+}
+
+/* â”€â”€ QUIZ DE SEGURIDAD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+const QUIZ = [
+  { q: "Â¿QuÃ© hacer durante un sismo?", opts: ["Correr hacia la calle","Ubicarse bajo una mesa resistente","Usar el ascensor","Abrir todas las ventanas"], a: 1 },
+  { q: "Â¿CuÃ¡ntas horas debe cubrir una mochila de emergencia?", opts: ["24 horas","48 horas","72 horas","96 horas"], a: 2 },
+  { q: "Â¿CuÃ¡l es el nÃºmero de los bomberos en PerÃº?", opts: ["105","106","116","115"], a: 2 },
+  { q: "Si hueles gas en tu vivienda, Â¿quÃ© haces primero?", opts: ["Encender la luz para ver mejor","Abrir ventanas y evacuar","Llamar desde adentro","Apagar el gas con agua"], a: 1 },
+  { q: "Si el pasillo tiene humo en un incendio, debes:", opts: ["Correr erguido","Desplazarte agachado","Abrir ventanas","Esperar en el cuarto"], a: 1 }
+];
+let quizIdx = 0, quizScore = 0;
+
+function initQuiz() {
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = QUIZ[quizIdx];
+  if (!q) return;
+  const qEl   = document.getElementById("quizQuestion");
+  const optsEl = document.getElementById("quizOptions");
+  const progEl = document.getElementById("quizProgress");
+  if (qEl)   qEl.textContent = q.q;
+  if (progEl) progEl.textContent = `Pregunta ${quizIdx + 1} de ${QUIZ.length}`;
+  if (optsEl) {
+    optsEl.innerHTML = "";
+    q.opts.forEach((opt, i) => {
+      const btn = document.createElement("button");
+      btn.className = "qo-btn";
+      btn.textContent = opt;
+      btn.onclick = () => answerQuiz(i === q.a);
+      optsEl.appendChild(btn);
+    });
+  }
+}
+
+function answerQuiz(correct) {
+  if (correct) quizScore++;
+  const opts = document.querySelectorAll(".qo-btn");
+  const q    = QUIZ[quizIdx];
+  opts.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.a)    btn.classList.add("correct");
+    else              btn.classList.add("wrong");
+  });
+  setTimeout(() => {
+    quizIdx++;
+    if (quizIdx >= QUIZ.length) {
+      showQuizResult();
+    } else {
+      renderQuestion();
+    }
+  }, 900);
+}
+
+function showQuizResult() {
+  const area   = document.getElementById("quizArea");
+  const result = document.getElementById("quizResult");
+  const score  = document.getElementById("quizFinalScore");
+  if (area)   area.style.display   = "none";
+  if (result) result.style.display = "block";
+  if (score)  score.textContent    = `Â¡Puntaje: ${quizScore}/${QUIZ.length}!`;
+  if (quizScore >= 4) {
+    const badge = document.getElementById("badgeGrid");
+    if (badge) {
+      const locked = badge.querySelector(".badge-item.locked");
+      if (locked) locked.classList.replace("locked", "earned");
+    }
+    showToast("ðŸ… Â¡Medalla desbloqueada: Experto en seguridad!");
+  }
