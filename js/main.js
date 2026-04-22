@@ -728,3 +728,103 @@ function showQuizResult() {
     }
     showToast("ðŸ… Â¡Medalla desbloqueada: Experto en seguridad!");
   }
+}
+
+function resetQuiz() {
+  quizIdx = 0; quizScore = 0;
+  const area   = document.getElementById("quizArea");
+  const result = document.getElementById("quizResult");
+  if (area)   area.style.display   = "block";
+  if (result) result.style.display = "none";
+  renderQuestion();
+}
+
+/* â”€â”€ SIMULACRO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+let drillInterval = null, drillSeconds = 0, drillStep = 0;
+const DRILL_STEPS = [
+  "Paso 1: Activa el botÃ³n SOS en tu telÃ©fono",
+  "Paso 2: Confirma tu rol (gas, luz o evacuaciÃ³n)",
+  "Paso 3: Notifica a tus roommates y baja por las escaleras",
+  "Paso 4: Llega al punto de encuentro y reporta 'Estoy a salvo'"
+];
+
+function initDrillTimer() {}
+
+function startDrill() {
+  const modal = document.getElementById("drillModal");
+  if (modal) modal.style.display = "flex";
+  drillSeconds = 0; drillStep = 0;
+  updateDrillDisplay();
+  clearInterval(drillInterval);
+  drillInterval = setInterval(() => {
+    drillSeconds++;
+    updateDrillDisplay();
+  }, 1000);
+}
+
+function updateDrillDisplay() {
+  const timer = document.getElementById("drillTimer");
+  const step  = document.getElementById("drillStep");
+  const min   = String(Math.floor(drillSeconds / 60)).padStart(2, "0");
+  const sec   = String(drillSeconds % 60).padStart(2, "0");
+  if (timer) timer.textContent = min + ":" + sec;
+  if (step)  step.textContent  = DRILL_STEPS[drillStep] || "Simulacro completado";
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById("ds" + i);
+    if (!el) continue;
+    if (i - 1 < drillStep)   el.classList.add("done"),   el.classList.remove("active");
+    else if (i - 1 === drillStep) el.classList.add("active"), el.classList.remove("done");
+    else el.classList.remove("done", "active");
+  }
+}
+
+function advanceDrill() {
+  drillStep++;
+  if (drillStep >= DRILL_STEPS.length) {
+    endDrill(true);
+  } else {
+    updateDrillDisplay();
+  }
+}
+
+function endDrill(completed) {
+  clearInterval(drillInterval);
+  const modal = document.getElementById("drillModal");
+  if (modal) modal.style.display = "none";
+  if (completed) {
+    const min = Math.floor(drillSeconds / 60), sec = drillSeconds % 60;
+    showToast(`ðŸ Simulacro completado en ${min}:${String(sec).padStart(2,"0")} min. Â¡Tiempo registrado!`);
+  }
+}
+
+function showTutorial() {
+  const modal = document.getElementById("tutorialModal");
+  if (modal) modal.style.display = "flex";
+}
+function closeTutorial() {
+  const modal = document.getElementById("tutorialModal");
+  if (modal) modal.style.display = "none";
+}
+
+/* â”€â”€ VISTA CONTACTO/FAMILIA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function famConfirm() {
+  showFamFeedback("âœ… Alerta leÃ­da â€” SofÃ­a sabe que estÃ¡s en camino", "ok");
+  showToast("ConfirmaciÃ³n enviada al residente");
+}
+function famCall()    { showFamFeedback("ðŸ“ž Llamando a SofÃ­a... (+51 987 654 321)", "ok"); showToast("Marcando nÃºmero de SofÃ­a..."); }
+function famRoute()   { showFamFeedback("ðŸ—ºï¸ Ruta calculada: 12 min en auto desde tu ubicaciÃ³n", "ok"); showToast("Ruta abierta hacia Av. Larco 432"); }
+function famMedical() { showFamFeedback("ðŸ©º SofÃ­a Â· Sangre: O+ Â· Alergias: Ninguna Â· Asma leve", "ok"); showToast("Ficha mÃ©dica de SofÃ­a cargada"); }
+
+function showFamFeedback(msg, type) {
+  const fb = document.getElementById("famFeedback");
+  if (!fb) return;
+  fb.style.display = "block";
+  fb.className = "fam-feedback " + type;
+  fb.textContent = msg;
+}
+
+function showFamAlert() {
+  document.getElementById("famStateAlert").style.display   = "block";
+  document.getElementById("famStateHistory").style.display = "none";
+  document.querySelectorAll(".fam-tab-btn").forEach((b,i) => b.classList.toggle("active", i===0));
+}
