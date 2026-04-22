@@ -823,3 +823,228 @@
           <h2>Elementos esenciales para cada residente.</h2>
           <p>Una mochila bien armada cubre las primeras 72 horas. ReadyDorm convierte esta lista en un checklist interactivo y te avisa quÃ© falta revisar.</p>
           <div class="btn-row">
+            <a href="registro.html" class="btn btn-primary">Revisar mi mochila</a>
+            <a href="#" class="btn btn-glass">Descargar checklist</a>
+          </div>
+        </div>
+        <div class="backpack-grid">
+          <span>Agua embotellada</span>
+          <span>Alimentos no perecibles</span>
+          <span>Linterna</span>
+          <span>Radio portÃ¡til</span>
+          <span>BotiquÃ­n</span>
+          <span>Documentos</span>
+          <span>Dinero en efectivo</span>
+          <span>Copia de llaves</span>
+          <span>Medicamentos</span>
+          <span>Silbato</span>
+          <span>Manta tÃ©rmica</span>
+          <span>Cargador portÃ¡til</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============= MOCHILA INTELIGENTE (HU_12-15, HU_38, HU_39) ============= -->
+    <section class="section backpack-smart-section" id="mochila-smart">
+      <div class="container">
+        <div class="section-heading reveal" style="text-align:center;">
+          <span class="section-kicker">Mochila inteligente</span>
+          <h2>Sabe quÃ© tienes, quÃ© vence y quÃ© falta.</h2>
+          <p>ReadyDorm convierte tu lista de emergencia en un sistema vivo: checklist interactivo, alertas de caducidad y mochila compartida con tus roommates.</p>
+        </div>
+
+        <div class="bsm-tabs reveal delay-1" id="bsmTabBar">
+          <button class="bsm-tab active" data-bsm="personal">ðŸŽ’ Mi mochila</button>
+          <button class="bsm-tab" data-bsm="shared">ðŸ‘¥ Compartida</button>
+          <button class="bsm-tab" data-bsm="indeci">ðŸ“‹ GuÃ­a INDECI</button>
+        </div>
+
+        <div class="bsm-panels reveal delay-1">
+
+          <!-- PERSONAL HU_12, HU_13 -->
+          <div class="bsm-panel active" id="bsm-personal">
+            <div class="backpack-progress-header">
+              <div>
+                <strong>Mi kit de emergencia</strong>
+                <small id="backpackScore">9 / 12 elementos listos</small>
+              </div>
+              <div class="bp-bar-wrap">
+                <div class="bp-bar" id="bpBar" style="width:75%"></div>
+              </div>
+            </div>
+            <div class="backpack-checklist" id="backpackChecklist">
+              <label class="bck-item checked"><input type="checkbox" checked onchange="updateBackpack()"> <span>ðŸ’§ Agua embotellada 2L</span> <small class="exp-ok">Vence: ago 2027</small></label>
+              <label class="bck-item checked"><input type="checkbox" checked onchange="updateBackpack()"> <span>ðŸ¥« Alimentos no perecibles</span> <small class="exp-warn">âš  Vence: jul 2025</small></label>
+              <label class="bck-item checked"><input type="checkbox" checked onchange="updateBackpack()"> <span>ðŸ”¦ Linterna con pilas</span> <small class="exp-ok">OK</small></label>
+              <label class="bck-item checked"><input type="checkbox" checked onchange="updateBackpack()"> <span>ðŸ“» Radio portÃ¡til</span> <small class="exp-ok">OK</small></label>
+              <label class="bck-item checked"><input type="checkbox" checked onchange="updateBackpack()"> <span>ðŸ©¹ BotiquÃ­n bÃ¡sico</span> <small class="exp-warn">âš  Vence: mar 2025</small></label>
+              <label class="bck-item checked"><input type="checkbox" checked onchange="updateBackpack()"> <span>ðŸ“„ Documentos (copia)</span> <small class="exp-ok">OK</small></label>
+              <label class="bck-item checked"><input type="checkbox" checked onchange="updateBackpack()"> <span>ðŸ’µ Dinero en efectivo</span> <small class="exp-ok">OK</small></label>
+              <label class="bck-item checked"><input type="checkbox" checked onchange="updateBackpack()"> <span>ðŸ’Š Medicamentos personales</span> <small class="exp-ok">OK</small></label>
+              <label class="bck-item checked"><input type="checkbox" checked onchange="updateBackpack()"> <span>ðŸ“± Cargador portÃ¡til</span> <small class="exp-ok">OK</small></label>
+              <label class="bck-item"><input type="checkbox" onchange="updateBackpack()"> <span>ðŸ”‘ Copia de llaves</span> <small class="exp-ok">Pendiente</small></label>
+              <label class="bck-item"><input type="checkbox" onchange="updateBackpack()"> <span>ðŸŒ¡ï¸ Manta tÃ©rmica</span> <small class="exp-ok">Pendiente</small></label>
+              <label class="bck-item"><input type="checkbox" onchange="updateBackpack()"> <span>ðŸ”” Silbato de emergencia</span> <small class="exp-ok">Pendiente</small></label>
+            </div>
+            <div class="bck-expiry-alert" id="bckExpiryAlert">
+              âš ï¸ <strong>2 items por vencer</strong> â€” Alimentos y botiquÃ­n vencen pronto. <a href="#" onclick="event.preventDefault();showToast('NotificaciÃ³n enviada a tus contactos.')">Notificar a contactos</a>
+            </div>
+          </div>
+
+          <!-- COMPARTIDA HU_14 -->
+          <div class="bsm-panel" id="bsm-shared">
+            <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">Cada roommate puede marcar items desde su propio dispositivo. Todos ven quiÃ©n aportÃ³ quÃ©.</p>
+            <div class="shared-backpack-grid">
+              <div class="sbg-row"><span>ðŸ’§ Agua 5L</span><span class="sbg-owner mateo">Mateo âœ“</span></div>
+              <div class="sbg-row"><span>ðŸ”¦ Linterna LED</span><span class="sbg-owner valeria">Valeria âœ“</span></div>
+              <div class="sbg-row"><span>ðŸ©¹ BotiquÃ­n</span><span class="sbg-owner pending">â€” Pendiente</span></div>
+              <div class="sbg-row"><span>ðŸ“» Radio portÃ¡til</span><span class="sbg-owner diego">Diego âœ“</span></div>
+              <div class="sbg-row"><span>ðŸ•¯ï¸ Velas + fÃ³sforos</span><span class="sbg-owner pending">â€” Pendiente</span></div>
+              <div class="sbg-row"><span>ðŸ§¯ Extintor 1kg</span><span class="sbg-owner mateo">Mateo âœ“</span></div>
+            </div>
+            <button class="btn btn-soft" style="margin-top:16px;width:100%;" onclick="showToast('Item marcado como tuyo en la mochila compartida âœ“')">Marcar un item como mÃ­o</button>
+          </div>
+
+          <!-- INDECI HU_15 -->
+          <div class="bsm-panel" id="bsm-indeci">
+            <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">Lista oficial de INDECI (Defensa Civil). Los items marcados con ðŸ”´ son obligatorios y aÃºn no estÃ¡n en tu mochila.</p>
+            <div class="indeci-list">
+              <div class="indeci-item mandatory have"><span>ðŸŸ¢</span> Agua (mÃ­nimo 2L por persona)</div>
+              <div class="indeci-item mandatory missing"><span>ðŸ”´</span> <strong>BotiquÃ­n completo</strong> â€” Â¡No registrado!</div>
+              <div class="indeci-item mandatory have"><span>ðŸŸ¢</span> Linterna y pilas extra</div>
+              <div class="indeci-item mandatory missing"><span>ðŸ”´</span> <strong>Manta tÃ©rmica</strong> â€” Â¡No registrada!</div>
+              <div class="indeci-item mandatory have"><span>ðŸŸ¢</span> Documentos en bolsa hermÃ©tica</div>
+              <div class="indeci-item optional"><span>ðŸŸ¡</span> Radio portÃ¡til (recomendado)</div>
+              <div class="indeci-item optional"><span>ðŸŸ¡</span> Silbato de emergencia</div>
+              <div class="indeci-item mandatory missing"><span>ðŸ”´</span> <strong>Copia de llaves</strong> â€” Â¡No registrada!</div>
+            </div>
+            <p style="font-size:12px;color:var(--muted);margin-top:12px;">Fuente: INDECI â€” Defensa Civil del PerÃº. Norma tÃ©cnica de preparaciÃ³n ante sismos.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============= GAMIFICACIÃ“N Y EDUCACIÃ“N (HU_26, HU_27, HU_25, HU_43, HU_49, HU_50) ============= -->
+    <section class="section gamif-section soft-yellow" id="gamificacion">
+      <div class="container">
+        <div class="section-heading reveal" style="text-align:center;">
+          <span class="section-kicker">Aprende y prepÃ¡rate</span>
+          <h2>La preparaciÃ³n tambiÃ©n puede ser un juego.</h2>
+          <p>Quizzes, simulacros y un score de preparaciÃ³n que te motiva a mantener tu kit siempre al dÃ­a.</p>
+        </div>
+
+        <div class="gamif-grid">
+
+          <!-- Quiz de seguridad HU_27 -->
+          <div class="gamif-card reveal" id="quizCard">
+            <h3>ðŸ§  Quiz de seguridad <span class="hu-tag">HU-27</span></h3>
+            <p id="quizProgress" style="font-size:13px;color:var(--muted);margin-bottom:14px;">Pregunta 1 de 5</p>
+
+            <div id="quizArea">
+              <p class="quiz-question" id="quizQuestion">Â¿QuÃ© hacer durante un sismo?</p>
+              <div class="quiz-options" id="quizOptions">
+                <button class="qo-btn" onclick="answerQuiz(false)">Correr hacia la calle</button>
+                <button class="qo-btn" onclick="answerQuiz(true)">Ubicarse bajo una mesa resistente</button>
+                <button class="qo-btn" onclick="answerQuiz(false)">Usar el ascensor</button>
+                <button class="qo-btn" onclick="answerQuiz(false)">Abrir todas las ventanas</button>
+              </div>
+            </div>
+
+            <div id="quizResult" style="display:none;text-align:center;">
+              <div style="font-size:48px;margin:16px 0;">ðŸ†</div>
+              <h3 id="quizFinalScore" style="color:var(--primary);">Â¡Puntaje: 4/5!</h3>
+              <p style="color:var(--muted);font-size:14px;">Excelente preparaciÃ³n. Ganaste la medalla de Experto en Sismos.</p>
+              <div class="badge-earned">ðŸ¥‡ Experto en Sismos</div>
+              <button class="btn btn-primary" style="margin-top:16px;" onclick="resetQuiz()">Intentar de nuevo</button>
+            </div>
+          </div>
+
+          <!-- Score de preparaciÃ³n HU_26 + Medallas HU_43 -->
+          <div class="gamif-card reveal delay-1">
+            <h3>ðŸ“Š Score de preparaciÃ³n <span class="hu-tag">HU-26</span></h3>
+            <div class="score-display">
+              <div class="score-circle" id="scoreCircle">
+                <strong id="scoreValue">75</strong>
+                <small>/100</small>
+              </div>
+              <div class="score-info">
+                <p class="score-label" id="scoreLabel">ðŸŸ¦ Usuario preparado</p>
+                <div class="score-breakdown">
+                  <div><span>Mochila completa</span><div class="mini-bar"><div style="width:75%"></div></div></div>
+                  <div><span>Simulacros</span><div class="mini-bar"><div style="width:60%"></div></div></div>
+                  <div><span>Contactos vinculados</span><div class="mini-bar"><div style="width:100%"></div></div></div>
+                </div>
+              </div>
+            </div>
+
+            <h4 style="margin:20px 0 12px;">ðŸ… Mis medallas <span class="hu-tag">HU-43</span></h4>
+            <div class="badge-grid" id="badgeGrid">
+              <div class="badge-item earned" title="Mochila completa">ðŸŽ’<small>Mochila lista</small></div>
+              <div class="badge-item earned" title="Quiz completado">ðŸ§ <small>Quiz experto</small></div>
+              <div class="badge-item earned" title="Contactos vinculados">ðŸ‘¥<small>Red activa</small></div>
+              <div class="badge-item locked" title="Completa 5 simulacros">ðŸ”’<small>5 simulacros</small></div>
+              <div class="badge-item locked" title="Mochila perfecta">ðŸ”’<small>Kit perfecto</small></div>
+              <div class="badge-item locked" title="30 dÃ­as preparado">ðŸ”’<small>30 dÃ­as</small></div>
+            </div>
+          </div>
+
+          <!-- Simulacro virtual HU_25 + Tutorial HU_49 + Videos HU_50 -->
+          <div class="gamif-card reveal delay-1" style="grid-column: 1/-1;">
+            <div class="edu-grid">
+              <div class="edu-item">
+                <span class="edu-icon">ðŸš¨</span>
+                <div>
+                  <h4>Simulacro virtual <span class="hu-tag">HU-25</span></h4>
+                  <p>Practica el flujo completo de evacuaciÃ³n: SOS â†’ Roles â†’ Punto de encuentro. Registra tu tiempo de respuesta.</p>
+                  <button class="btn btn-primary" onclick="startDrill()">Iniciar simulacro ahora</button>
+                </div>
+              </div>
+              <div class="edu-item">
+                <span class="edu-icon">ðŸ“–</span>
+                <div>
+                  <h4>Tutorial rÃ¡pido <span class="hu-tag">HU-49</span></h4>
+                  <p>GuÃ­a de 3 minutos para usar ReadyDorm en una crisis real. Sin tiempo para leer manuales cuando todo pasa.</p>
+                  <button class="btn btn-soft" onclick="showTutorial()">Ver tutorial</button>
+                </div>
+              </div>
+              <div class="edu-item">
+                <span class="edu-icon">ðŸŽ¬</span>
+                <div>
+                  <h4>Videos de primeros auxilios <span class="hu-tag">HU-50</span></h4>
+                  <p>Videos cortos sobre RCP, quemaduras, asfixia y fracturas. Disponibles offline para cuando caen las redes.</p>
+                  <button class="btn btn-soft" onclick="showToast('MÃ³dulo offline disponible tras registrarte.')">Ver videos offline</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Modal simulacro -->
+        <div class="drill-modal" id="drillModal" style="display:none;">
+          <div class="dm-card">
+            <h3>ðŸš¨ Simulacro en progreso</h3>
+            <div class="dm-timer" id="drillTimer">00:00</div>
+            <p id="drillStep">Paso 1: Activa el botÃ³n SOS en tu telÃ©fono</p>
+            <div class="dm-steps">
+              <span class="dm-step active" id="ds1">1</span>
+              <span class="dm-step" id="ds2">2</span>
+              <span class="dm-step" id="ds3">3</span>
+              <span class="dm-step" id="ds4">4</span>
+            </div>
+            <button class="btn btn-primary" style="width:100%;" onclick="advanceDrill()">Siguiente paso â†’</button>
+            <button class="btn btn-ghost" style="width:100%;margin-top:8px;" onclick="endDrill()">Cancelar simulacro</button>
+          </div>
+        </div>
+
+        <!-- Modal tutorial -->
+        <div class="drill-modal" id="tutorialModal" style="display:none;">
+          <div class="dm-card">
+            <h3>ðŸ“– Tutorial ReadyDorm</h3>
+            <div class="tutorial-steps">
+              <div class="ts-item"><span class="ts-num">1</span><div><strong>Configura tu perfil</strong><p>Ficha mÃ©dica, contactos de confianza y selecciÃ³n de rol (Residente o Gestor).</p></div></div>
+              <div class="ts-item"><span class="ts-num">2</span><div><strong>Activa el SOS</strong><p>MantÃ©n presionado el botÃ³n rojo 3 segundos. Tus contactos recibirÃ¡n tu ubicaciÃ³n al instante.</p></div></div>
+              <div class="ts-item"><span class="ts-num">3</span><div><strong>Coordina con roommates</strong><p>Cada uno tiene su rol: gas, luz o evacuaciÃ³n. Confirman desde su app cuando completan la tarea.</p></div></div>
