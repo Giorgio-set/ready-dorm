@@ -828,3 +828,93 @@ function showFamAlert() {
   document.getElementById("famStateHistory").style.display = "none";
   document.querySelectorAll(".fam-tab-btn").forEach((b,i) => b.classList.toggle("active", i===0));
 }
+function showFamHistory() {
+  document.getElementById("famStateAlert").style.display   = "none";
+  document.getElementById("famStateHistory").style.display = "block";
+  document.querySelectorAll(".fam-tab-btn").forEach((b,i) => b.classList.toggle("active", i===1));
+}
+
+/* â”€â”€ DASHBOARD GESTOR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+const RESIDENTS = [
+  {name:"Ana M.", floor:1}, {name:"Luis R.", floor:1}, {name:"Karen P.", floor:1},
+  {name:"Jorge S.", floor:2}, {name:"Martina", floor:2}, {name:"Roberto", floor:2},
+  {name:"Diego F.", floor:3}, {name:"Valeria", floor:3}, {name:"Andrea", floor:3},
+  {name:"Carlos B.", floor:4}, {name:"Sofia L.", floor:4}, {name:"Miguel T.", floor:4},
+  {name:"Rosa M.", floor:5}, {name:"Julio V.", floor:5}, {name:"Paola A.", floor:5},
+  {name:"Edwin R.", floor:6}, {name:"Luz G.", floor:6}, {name:"Mario C.", floor:6}
+];
+let residentStates = {};
+
+function initResidentGrid() {
+  const grid = document.getElementById("residentGrid");
+  if (!grid) return;
+  RESIDENTS.forEach((r, i) => {
+    residentStates[i] = ["safe","danger","unknown"][Math.floor(Math.random()*3)];
+  });
+  renderResidentGrid();
+}
+
+function renderResidentGrid() {
+  const grid = document.getElementById("residentGrid");
+  if (!grid) return;
+  grid.innerHTML = RESIDENTS.map((r, i) => {
+    const state = residentStates[i];
+    return `<div class="rg-resident" onclick="toggleResidentSafe(${i})" title="Piso ${r.floor} Â· Click para marcar a salvo">
+      <div class="rg-avatar">${r.name.charAt(0)}</div>
+      <span class="rg-name">${r.name}</span>
+      <div class="rg-dot ${state}"></div>
+    </div>`;
+  }).join("");
+}
+
+function toggleResidentSafe(i) {
+  residentStates[i] = residentStates[i] === "safe" ? "unknown" : "safe";
+  renderResidentGrid();
+  const safe = Object.values(residentStates).filter(s=>s==="safe").length;
+  showToast(`${safe}/${RESIDENTS.length} residentes reportados a salvo`);
+}
+
+function markAllSafe() {
+  RESIDENTS.forEach((_, i) => { residentStates[i] = "safe"; });
+  renderResidentGrid();
+  showToast("âœ… Todos los residentes marcados a salvo");
+}
+
+function resetResidents() {
+  RESIDENTS.forEach((_, i) => { residentStates[i] = "unknown"; });
+  renderResidentGrid();
+  showToast("Estado de todos los residentes reiniciado");
+}
+
+function initGestorTabs() {
+  const bar = document.getElementById("gestorTabBar");
+  if (!bar) return;
+  bar.querySelectorAll(".gestor-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      bar.querySelectorAll(".gestor-tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".gestor-panel").forEach(p => p.classList.remove("active"));
+      tab.classList.add("active");
+      const panel = document.getElementById("gtab-" + tab.dataset.gtab);
+      if (panel) panel.classList.add("active");
+    });
+  });
+}
+
+function sendMassAlert() {
+  const msg    = document.getElementById("massMsg")?.value.trim();
+  const sector = document.getElementById("sectorSelect")?.value;
+  if (!msg) { showToast("âš ï¸ Escribe un mensaje antes de emitir la alerta"); return; }
+  const dest = sector === "all" ? "todo el edificio" : "sector: " + sector;
+  showToast(`ðŸš¨ Alerta emitida a ${dest}: "${msg.substring(0,40)}..."`);
+  document.getElementById("massMsg").value = "";
+}
+
+function moveMeetingPoint() {
+  const pin = document.getElementById("mpmPin");
+  if (!pin) return;
+  const positions = [{bottom:"12px",right:"16px"},{bottom:"50px",left:"20px"},{top:"10px",right:"20px"}];
+  const pos = positions[Math.floor(Math.random()*positions.length)];
+  Object.assign(pin.style, {bottom:"auto",right:"auto",top:"auto",left:"auto",...pos});
+  showToast("ðŸ“ Punto de encuentro actualizado en el mapa");
+}
+
