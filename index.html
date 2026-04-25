@@ -973,3 +973,223 @@
               <div class="score-info">
                 <p class="score-label" id="scoreLabel">ðŸŸ¦ Usuario preparado</p>
                 <div class="score-breakdown">
+                  <div><span>Mochila completa</span><div class="mini-bar"><div style="width:75%"></div></div></div>
+                  <div><span>Simulacros</span><div class="mini-bar"><div style="width:60%"></div></div></div>
+                  <div><span>Contactos vinculados</span><div class="mini-bar"><div style="width:100%"></div></div></div>
+                </div>
+              </div>
+            </div>
+
+            <h4 style="margin:20px 0 12px;">ðŸ… Mis medallas <span class="hu-tag">HU-43</span></h4>
+            <div class="badge-grid" id="badgeGrid">
+              <div class="badge-item earned" title="Mochila completa">ðŸŽ’<small>Mochila lista</small></div>
+              <div class="badge-item earned" title="Quiz completado">ðŸ§ <small>Quiz experto</small></div>
+              <div class="badge-item earned" title="Contactos vinculados">ðŸ‘¥<small>Red activa</small></div>
+              <div class="badge-item locked" title="Completa 5 simulacros">ðŸ”’<small>5 simulacros</small></div>
+              <div class="badge-item locked" title="Mochila perfecta">ðŸ”’<small>Kit perfecto</small></div>
+              <div class="badge-item locked" title="30 dÃ­as preparado">ðŸ”’<small>30 dÃ­as</small></div>
+            </div>
+          </div>
+
+          <!-- Simulacro virtual HU_25 + Tutorial HU_49 + Videos HU_50 -->
+          <div class="gamif-card reveal delay-1" style="grid-column: 1/-1;">
+            <div class="edu-grid">
+              <div class="edu-item">
+                <span class="edu-icon">ðŸš¨</span>
+                <div>
+                  <h4>Simulacro virtual <span class="hu-tag">HU-25</span></h4>
+                  <p>Practica el flujo completo de evacuaciÃ³n: SOS â†’ Roles â†’ Punto de encuentro. Registra tu tiempo de respuesta.</p>
+                  <button class="btn btn-primary" onclick="startDrill()">Iniciar simulacro ahora</button>
+                </div>
+              </div>
+              <div class="edu-item">
+                <span class="edu-icon">ðŸ“–</span>
+                <div>
+                  <h4>Tutorial rÃ¡pido <span class="hu-tag">HU-49</span></h4>
+                  <p>GuÃ­a de 3 minutos para usar ReadyDorm en una crisis real. Sin tiempo para leer manuales cuando todo pasa.</p>
+                  <button class="btn btn-soft" onclick="showTutorial()">Ver tutorial</button>
+                </div>
+              </div>
+              <div class="edu-item">
+                <span class="edu-icon">ðŸŽ¬</span>
+                <div>
+                  <h4>Videos de primeros auxilios <span class="hu-tag">HU-50</span></h4>
+                  <p>Videos cortos sobre RCP, quemaduras, asfixia y fracturas. Disponibles offline para cuando caen las redes.</p>
+                  <button class="btn btn-soft" onclick="showToast('MÃ³dulo offline disponible tras registrarte.')">Ver videos offline</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Modal simulacro -->
+        <div class="drill-modal" id="drillModal" style="display:none;">
+          <div class="dm-card">
+            <h3>ðŸš¨ Simulacro en progreso</h3>
+            <div class="dm-timer" id="drillTimer">00:00</div>
+            <p id="drillStep">Paso 1: Activa el botÃ³n SOS en tu telÃ©fono</p>
+            <div class="dm-steps">
+              <span class="dm-step active" id="ds1">1</span>
+              <span class="dm-step" id="ds2">2</span>
+              <span class="dm-step" id="ds3">3</span>
+              <span class="dm-step" id="ds4">4</span>
+            </div>
+            <button class="btn btn-primary" style="width:100%;" onclick="advanceDrill()">Siguiente paso â†’</button>
+            <button class="btn btn-ghost" style="width:100%;margin-top:8px;" onclick="endDrill()">Cancelar simulacro</button>
+          </div>
+        </div>
+
+        <!-- Modal tutorial -->
+        <div class="drill-modal" id="tutorialModal" style="display:none;">
+          <div class="dm-card">
+            <h3>ðŸ“– Tutorial ReadyDorm</h3>
+            <div class="tutorial-steps">
+              <div class="ts-item"><span class="ts-num">1</span><div><strong>Configura tu perfil</strong><p>Ficha mÃ©dica, contactos de confianza y selecciÃ³n de rol (Residente o Gestor).</p></div></div>
+              <div class="ts-item"><span class="ts-num">2</span><div><strong>Activa el SOS</strong><p>MantÃ©n presionado el botÃ³n rojo 3 segundos. Tus contactos recibirÃ¡n tu ubicaciÃ³n al instante.</p></div></div>
+              <div class="ts-item"><span class="ts-num">3</span><div><strong>Coordina con roommates</strong><p>Cada uno tiene su rol: gas, luz o evacuaciÃ³n. Confirman desde su app cuando completan la tarea.</p></div></div>
+              <div class="ts-item"><span class="ts-num">4</span><div><strong>Reporta tu estado</strong><p>Presiona "Estoy a salvo" para que tu familia sepa que estÃ¡s bien sin necesidad de llamar.</p></div></div>
+            </div>
+            <button class="btn btn-primary" style="width:100%;margin-top:16px;" onclick="closeTutorial()">Â¡Entendido, estoy listo!</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ============= VISTA DEL CONTACTO/FAMILIA (HU_30-37) ============= -->
+    <section class="section family-section" id="contactos-vista">
+      <div class="container">
+        <div class="fam-split">
+          <div class="fam-copy reveal">
+            <span class="section-kicker">Para contactos de emergencia</span>
+            <h2>Saber que tu familiar estÃ¡ bien, en segundos.</h2>
+            <p>ReadyDorm le da a tus contactos de confianza todas las herramientas para actuar con rapidez y sin pÃ¡nico cuando reciben una alerta.</p>
+            <ul class="sos-feature-list">
+              <li><span class="sfl-dot coral"></span><strong>HU-30</strong> â€” Alerta de alta prioridad con bypass del silencio</li>
+              <li><span class="sfl-dot coral"></span><strong>HU-31</strong> â€” Mapa GPS con ubicaciÃ³n exacta del residente</li>
+              <li><span class="sfl-dot support"></span><strong>HU-32</strong> â€” ConfirmaciÃ³n de lectura enviada al residente</li>
+              <li><span class="sfl-dot coral"></span><strong>HU-33</strong> â€” Acceso a la ficha mÃ©dica para paramÃ©dicos</li>
+              <li><span class="sfl-dot accent"></span><strong>HU-34</strong> â€” BotÃ³n de llamada rÃ¡pida con nÃºmero marcado</li>
+              <li><span class="sfl-dot support"></span><strong>HU-35</strong> â€” Ruta de navegaciÃ³n desde tu ubicaciÃ³n</li>
+              <li><span class="sfl-dot accent"></span><strong>HU-37</strong> â€” Historial completo de alertas pasadas</li>
+            </ul>
+          </div>
+
+          <div class="fam-phone-wrap reveal delay-1">
+            <div class="fam-phone">
+              <div class="sp-top">
+                <span class="sp-status-dot coral"></span>
+                <strong>Alerta de SofÃ­a</strong>
+                <small>Ahora</small>
+              </div>
+              <div class="fam-screen" id="famScreen">
+
+                <!-- Estado alerta activa -->
+                <div id="famStateAlert">
+                  <div class="fam-alert-card" id="famAlertCard">
+                    <div class="fac-header">
+                      <span class="fac-avatar">S</span>
+                      <div>
+                        <strong>SofÃ­a activÃ³ SOS</strong>
+                        <small>Hace 23 segundos Â· Miraflores</small>
+                      </div>
+                    </div>
+                    <div class="fac-location">
+                      <div class="fac-mini-map">
+                        <div class="fmm-pin">ðŸ“</div>
+                        <span>Av. Larco 432, Miraflores</span>
+                      </div>
+                    </div>
+                    <div class="fam-action-btns">
+                      <button class="fab-btn coral" onclick="famConfirm()">âœ“ Confirmar lectura</button>
+                      <button class="fab-btn blue" onclick="famCall()">ðŸ“ž Llamar a SofÃ­a</button>
+                      <button class="fab-btn teal" onclick="famRoute()">ðŸ—ºï¸ CÃ³mo llegar</button>
+                      <button class="fab-btn yellow" onclick="famMedical()">ðŸ©º Ficha mÃ©dica</button>
+                    </div>
+                    <div id="famFeedback" class="fam-feedback" style="display:none;"></div>
+                  </div>
+                </div>
+
+                <!-- Historial HU_37 -->
+                <div id="famStateHistory" style="display:none;">
+                  <p style="font-size:12px;font-weight:600;margin-bottom:10px;">Historial de alertas â€” SofÃ­a</p>
+                  <div class="alert-history-list">
+                    <div class="ahl-item safe"><span>âœ…</span><div><strong>Simulacro</strong><small>15 may 2026 Â· Resuelta en 2 min</small></div></div>
+                    <div class="ahl-item sos"><span>ðŸ†˜</span><div><strong>SOS real â€” sismo leve</strong><small>28 abr 2026 Â· Resuelto en 4 min</small></div></div>
+                    <div class="ahl-item safe"><span>âœ…</span><div><strong>Simulacro nacional</strong><small>31 mar 2026 Â· Resuelta en 3 min</small></div></div>
+                  </div>
+                  <button class="btn btn-soft" style="width:100%;margin-top:12px;" onclick="showFamAlert()">â† Volver a alerta activa</button>
+                </div>
+
+              </div>
+              <div class="sp-bottom" style="gap:8px;">
+                <button class="fam-tab-btn active" onclick="showFamAlert()">Alerta</button>
+                <button class="fam-tab-btn" onclick="showFamHistory()">Historial</button>
+              </div>
+            </div>
+            <p class="sos-hint">ðŸ‘† InteractÃºa con los botones de la alerta</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============= DASHBOARD DEL GESTOR (HU_20-23, HU_42, HU_44-48) ============= -->
+    <section class="section gestor-section" id="panel-gestor">
+      <div class="container">
+        <div class="section-heading reveal" style="text-align:center;">
+          <span class="section-kicker">Panel del gestor</span>
+          <h2>Control total del edificio en una sola pantalla.</h2>
+          <p>El Safety Lead tiene acceso a herramientas avanzadas: alertas masivas, brigadistas, mapa de equipos y reportes INDECI.</p>
+        </div>
+
+        <div class="gestor-tabs reveal delay-1" id="gestorTabBar">
+          <button class="gestor-tab active" data-gtab="estado">ðŸ“Š Estado</button>
+          <button class="gestor-tab" data-gtab="alertas">ðŸ“¢ Alertas</button>
+          <button class="gestor-tab" data-gtab="equipo">ðŸš’ Equipo</button>
+          <button class="gestor-tab" data-gtab="historial">ðŸ“‹ Historial</button>
+          <button class="gestor-tab" data-gtab="reportes">ðŸ”§ Reportes</button>
+        </div>
+
+        <div class="gestor-panels reveal delay-1">
+
+          <!-- ESTADO HU_20 -->
+          <div class="gestor-panel active" id="gtab-estado">
+            <h3 style="margin-bottom:16px;">Residentes del edificio â€” Estado en tiempo real <span class="hu-tag">HU-20</span></h3>
+            <div class="resident-grid" id="residentGrid">
+              <!-- generado por JS -->
+            </div>
+            <div class="resident-legend">
+              <span><span class="rl-dot safe"></span> A salvo</span>
+              <span><span class="rl-dot danger"></span> Sin respuesta</span>
+              <span><span class="rl-dot unknown"></span> Sin reportar</span>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="markAllSafe()">âœ“ Marcar todos a salvo</button>
+              <button class="btn btn-soft" onclick="resetResidents()">â†º Reiniciar estado</button>
+            </div>
+          </div>
+
+          <!-- ALERTAS HU_22, HU_47, HU_48 -->
+          <div class="gestor-panel" id="gtab-alertas">
+            <div class="alerts-split">
+              <div>
+                <h3>NotificaciÃ³n masiva <span class="hu-tag">HU-22</span></h3>
+                <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">EnvÃ­a una instrucciÃ³n a todo el edificio o a un sector especÃ­fico.</p>
+                <div class="mass-alert-form">
+                  <textarea class="mf-input" id="massMsg" rows="3" placeholder="Ej: Evacuar por fachada trasera â€” incendio en sÃ³tano"></textarea>
+                  <select class="mf-input" id="sectorSelect" style="margin-top:8px;">
+                    <option value="all">Todo el edificio</option>
+                    <option value="a">Torre A</option>
+                    <option value="b">Torre B</option>
+                    <option value="3">Solo piso 3</option>
+                    <option value="4">Solo piso 4</option>
+                  </select>
+                  <button class="btn btn-primary" style="width:100%;margin-top:8px;" onclick="sendMassAlert()">ðŸš¨ Emitir alerta</button>
+                </div>
+              </div>
+              <div>
+                <h3>Punto de encuentro <span class="hu-tag">HU-47</span></h3>
+                <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Marca la zona segura municipal para que todos evacÃºen al mismo lugar.</p>
