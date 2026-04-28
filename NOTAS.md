@@ -7,3 +7,4 @@ IHC y Tecnologias Moviles - UPC 202610
 2026-04-21 Junior: Mejorar navegacion por teclado en dropdown
 2026-04-23 Junior: Agregar aria-label a botones de icono
 2026-04-23 Junior: Agregar estado de carga al boton submit
+2026-04-28 Junior: Completar validacion del lado cliente en formularios
