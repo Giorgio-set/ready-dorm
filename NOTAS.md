@@ -9,3 +9,4 @@ IHC y Tecnologias Moviles - UPC 202610
 2026-04-23 Junior: Agregar estado de carga al boton submit
 2026-04-28 Junior: Completar validacion del lado cliente en formularios
 2026-04-28 Victor: Corregir resaltado de seccion activa en scroll
+2026-04-29 Junior: Mejorar visibilidad del indicador de foco
