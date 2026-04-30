@@ -1,6 +1,6 @@
-/* ============================================================
-   READYDORM — MAIN.JS
-   Navegación · Animaciones · Formularios · Mapa simulado
+﻿/* ============================================================
+   READYDORM â€” MAIN.JS
+   NavegaciÃ³n Â· Animaciones Â· Formularios Â· Mapa simulado
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* -----------------------------------------------------------
-   1. NAVEGACIÓN: hamburguesa, dropdown, scroll-spy
+   1. NAVEGACIÃ“N: hamburguesa, dropdown, scroll-spy
    ----------------------------------------------------------- */
 function initNavigation() {
   const navToggle = document.getElementById("navToggle");
@@ -21,7 +21,7 @@ function initNavigation() {
   const dropdownButton = dropdown?.querySelector(".dropdown-button");
   const navLinks = document.querySelectorAll(".nav-link, .dropdown-menu a");
 
-  // Toggle del menú móvil
+  // Toggle del menÃº mÃ³vil
   navToggle?.addEventListener("click", () => {
     const isOpen = navMenu?.classList.toggle("open");
     navActions?.classList.toggle("open", Boolean(isOpen));
@@ -43,7 +43,7 @@ function initNavigation() {
     }
   });
 
-  // Cerrar menús al navegar
+  // Cerrar menÃºs al navegar
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
       dropdown?.classList.remove("open");
@@ -53,7 +53,7 @@ function initNavigation() {
     });
   });
 
-  // Scroll-spy para resaltar la sección activa en el menú
+  // Scroll-spy para resaltar la secciÃ³n activa en el menÃº
   const sections = [...document.querySelectorAll("main section[id]")];
   if (!sections.length) return;
 
@@ -107,7 +107,7 @@ function initForms() {
 
   loginForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    showToast("Inicio de sesión correcto. Redirigiendo al inicio...");
+    showToast("Inicio de sesiÃ³n correcto. Redirigiendo al inicio...");
     setTimeout(() => { window.location.href = "index.html#inicio"; }, 1100);
   });
 
@@ -134,7 +134,7 @@ function showToast(message) {
 }
 
 /* -----------------------------------------------------------
-   5. MAPA INTERACTIVO SIMULADO de clínicas cercanas
+   5. MAPA INTERACTIVO SIMULADO de clÃ­nicas cercanas
    ----------------------------------------------------------- */
 function initMockClinicsMap() {
   const mockMap = document.getElementById("mockMap");
@@ -162,7 +162,7 @@ function initMockClinicsMap() {
   const baseClinics = [
     {
       id: 0,
-      name: "Clínica ReadyCare 24h",
+      name: "ClÃ­nica ReadyCare 24h",
       shortName: "ReadyCare 24h",
       address: "Av. La Marina 1235, San Miguel",
       status: "Emergencia 24h",
@@ -173,7 +173,7 @@ function initMockClinicsMap() {
     },
     {
       id: 1,
-      name: "Clínica San Pablo",
+      name: "ClÃ­nica San Pablo",
       shortName: "San Pablo",
       address: "Av. El Polo 789, Surco",
       status: "Hospital privado",
@@ -184,10 +184,10 @@ function initMockClinicsMap() {
     },
     {
       id: 2,
-      name: "Centro Médico Universitario",
+      name: "Centro MÃ©dico Universitario",
       shortName: "Centro Universitario",
       address: "Av. Universitaria 1801, San Miguel",
-      status: "Atención general",
+      status: "AtenciÃ³n general",
       type: "general",
       distance: 2.1,
       eta: 12,
@@ -206,10 +206,10 @@ function initMockClinicsMap() {
     },
     {
       id: 4,
-      name: "Policlínico Magdalena",
-      shortName: "Policlínico",
+      name: "PoliclÃ­nico Magdalena",
+      shortName: "PoliclÃ­nico",
       address: "Jr. Castilla 540, Magdalena",
-      status: "Atención básica",
+      status: "AtenciÃ³n bÃ¡sica",
       type: "general",
       distance: 3.2,
       eta: 18,
@@ -229,7 +229,7 @@ function initMockClinicsMap() {
   detectButton?.addEventListener("click", () => {
     detectButton.disabled = true;
     detectButton.textContent = "Simulando...";
-    statusElement.textContent = "Analizando ubicación del usuario...";
+    statusElement.textContent = "Analizando ubicaciÃ³n del usuario...";
 
     setTimeout(() => {
       userMarker?.classList.add("detected");
@@ -245,10 +245,10 @@ function initMockClinicsMap() {
 
       applyFilter(currentFilter, false);
       activateClinic(clinics[0].id);
-      statusElement.textContent = "Ubicación detectada (simulada): 5 clínicas cercanas";
+      statusElement.textContent = "UbicaciÃ³n detectada (simulada): 5 clÃ­nicas cercanas";
       detectButton.disabled = false;
-      detectButton.textContent = "Actualizar simulación";
-      showToast("Mapa actualizado con clínicas cercanas a tu ubicación.");
+      detectButton.textContent = "Actualizar simulaciÃ³n";
+      showToast("Mapa actualizado con clÃ­nicas cercanas a tu ubicaciÃ³n.");
     }, 900);
   });
 
@@ -257,7 +257,7 @@ function initMockClinicsMap() {
     updateZoomState();
     userMarker?.classList.add("detected");
     activateClinic(clinics[0]?.id ?? 0);
-    statusElement.textContent = "Mapa centrado en tu ubicación simulada";
+    statusElement.textContent = "Mapa centrado en tu ubicaciÃ³n simulada";
     showToast("Vista del mapa centrada correctamente.");
   });
 
@@ -306,7 +306,7 @@ function initMockClinicsMap() {
   }
 
   function buttonLabel(filter) {
-    const labels = { all: "Todas", emergency: "24h", close: "Más cerca", general: "General" };
+    const labels = { all: "Todas", emergency: "24h", close: "MÃ¡s cerca", general: "General" };
     return labels[filter] || "Todas";
   }
 
@@ -333,10 +333,10 @@ function initMockClinicsMap() {
           <h4>${c.name}</h4>
           <p>${c.address}</p>
           <div class="clinic-meta">
-            <span class="meta-distance">${c.distance.toFixed(1)} km · ${c.eta} min</span>
+            <span class="meta-distance">${c.distance.toFixed(1)} km Â· ${c.eta} min</span>
             <span class="meta-status ${c.type}">${c.status}</span>
           </div>
-          <a class="route-link" href="#mockMap">Ver ruta simulada →</a>
+          <a class="route-link" href="#mockMap">Ver ruta simulada â†’</a>
         </article>
       `)
       .join("");
@@ -381,7 +381,7 @@ function initMockClinicsMap() {
 
 
 /* ============================================================
-   READYDORM — NUEVAS FUNCIONES (HU_01 – HU_50)
+   READYDORM â€” NUEVAS FUNCIONES (HU_01 â€“ HU_50)
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -395,7 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateBackpack();
 });
 
-/* ── TABS DE SEGMENTOS ─────────────────────────────────────── */
+/* â”€â”€ TABS DE SEGMENTOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function initSegmentTabs() {
   const bar = document.getElementById("segTabBar");
   if (!bar) return;
@@ -410,7 +410,7 @@ function initSegmentTabs() {
   });
 }
 
-/* ── SOS DEMO ──────────────────────────────────────────────── */
+/* â”€â”€ SOS DEMO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function initSOSDemo() {
   const btn = document.getElementById("sosBtnHold");
   if (!btn) return;
@@ -466,24 +466,24 @@ function initSOSDemo() {
 
 function triggerSOS() {
   showSOSState("sosStateSent");
-  showToast("🆘 SOS activado — 3 contactos notificados con GPS");
+  showToast("ðŸ†˜ SOS activado â€” 3 contactos notificados con GPS");
 }
 
 function cancelSOS() {
   showSOSState("sosStateCancelled");
-  showToast("Alerta cancelada — tus contactos fueron informados");
+  showToast("Alerta cancelada â€” tus contactos fueron informados");
 }
 
 function reportSafe() {
   showSOSState("sosStateSafe");
-  showToast("✅ Tus contactos saben que estás a salvo");
+  showToast("âœ… Tus contactos saben que estÃ¡s a salvo");
 }
 
 function activateVoice() {
   showSOSState("sosStateVoice");
   setTimeout(() => {
     triggerSOS();
-    showToast("🎤 Voz reconocida: SOS activado automáticamente");
+    showToast("ðŸŽ¤ Voz reconocida: SOS activado automÃ¡ticamente");
   }, 2800);
 }
 
@@ -491,9 +491,9 @@ function toggleTorch() {
   const btn    = document.getElementById("torchBtn");
   const status = document.getElementById("torchStatus");
   const isOn   = btn?.textContent.includes("apagada") === false && status?.textContent.includes("encendida");
-  if (status) status.textContent = isOn ? "Linterna: apagada" : "Linterna: encendida 🔦";
-  if (btn)    btn.textContent    = isOn ? "🔦 Linterna"      : "💡 Encendida";
-  showToast(isOn ? "Linterna apagada" : "Linterna encendida ✓");
+  if (status) status.textContent = isOn ? "Linterna: apagada" : "Linterna: encendida ðŸ”¦";
+  if (btn)    btn.textContent    = isOn ? "ðŸ”¦ Linterna"      : "ðŸ’¡ Encendida";
+  showToast(isOn ? "Linterna apagada" : "Linterna encendida âœ“");
 }
 
 function showProximityAlert() {
@@ -501,7 +501,7 @@ function showProximityAlert() {
   if (!pa) return;
   pa.style.display = "flex";
   setTimeout(() => { pa.style.display = "none"; }, 4000);
-  showToast("⚠️ Alerta de piso activada — evacuación inmediata");
+  showToast("âš ï¸ Alerta de piso activada â€” evacuaciÃ³n inmediata");
 }
 
 function showSOSState(id) {
@@ -515,22 +515,22 @@ function showSOSState(id) {
 
 function resetSOS() { showSOSState("sosStateNormal"); }
 
-/* ── PERFIL & CONTACTOS ────────────────────────────────────── */
+/* â”€â”€ PERFIL & CONTACTOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function saveMedical() {
   const bt = document.getElementById("bloodType")?.value;
   const al = document.getElementById("allergies")?.value;
   if (!al.trim()) {
-    showToast("⚠️ El grupo sanguíneo es requerido para protocolos de emergencia");
+    showToast("âš ï¸ El grupo sanguÃ­neo es requerido para protocolos de emergencia");
     return;
   }
-  showToast("✅ Ficha médica actualizada con éxito — Tipo " + bt);
+  showToast("âœ… Ficha mÃ©dica actualizada con Ã©xito â€” Tipo " + bt);
 }
 
 function addContact() {
   const name  = document.getElementById("newContactName")?.value.trim();
   const phone = document.getElementById("newContactPhone")?.value.trim();
   if (!name || phone.length !== 9) {
-    showToast("⚠️ El número debe contener exactamente 9 dígitos");
+    showToast("âš ï¸ El nÃºmero debe contener exactamente 9 dÃ­gitos");
     return;
   }
   const list = document.getElementById("contactList");
@@ -538,36 +538,36 @@ function addContact() {
   const initials = name.charAt(0).toUpperCase();
   const item = document.createElement("div");
   item.className = "contact-item verified";
-  item.innerHTML = `<div class="ci-avatar">${initials}</div><div class="ci-info"><strong>${name}</strong><small>+51 ${phone} · Vinculado</small></div><span class="ci-badge">✓</span>`;
+  item.innerHTML = `<div class="ci-avatar">${initials}</div><div class="ci-info"><strong>${name}</strong><small>+51 ${phone} Â· Vinculado</small></div><span class="ci-badge">âœ“</span>`;
   list.appendChild(item);
   document.getElementById("newContactName").value = "";
   document.getElementById("newContactPhone").value = "";
-  showToast("✅ Contacto vinculado. SMS de invitación enviado.");
+  showToast("âœ… Contacto vinculado. SMS de invitaciÃ³n enviado.");
 }
 
-function toggleGPS(el)   { showToast(el.checked ? "GPS: solo durante SOS ✓" : "GPS: compartir siempre"); }
-function toggleBio(el)   { showToast(el.checked ? "Acceso biométrico activado ✓" : "Biometría desactivada"); }
-function toggleNotif(el) { showToast(el.checked ? "Notificaciones críticas: bypass silencio ✓" : "Notificaciones normales"); }
+function toggleGPS(el)   { showToast(el.checked ? "GPS: solo durante SOS âœ“" : "GPS: compartir siempre"); }
+function toggleBio(el)   { showToast(el.checked ? "Acceso biomÃ©trico activado âœ“" : "BiometrÃ­a desactivada"); }
+function toggleNotif(el) { showToast(el.checked ? "Notificaciones crÃ­ticas: bypass silencio âœ“" : "Notificaciones normales"); }
 
 function selectResident(card, name) {
   document.querySelectorAll(".rs-card").forEach(c => c.classList.remove("active"));
   card.classList.add("active");
-  const status = name === "Carlos" ? "⚠️ sin reportar" : "✅ a salvo";
+  const status = name === "Carlos" ? "âš ï¸ sin reportar" : "âœ… a salvo";
   const msg = document.getElementById("residentMsg");
-  if (msg) msg.innerHTML = `Monitoreando: <strong>${name}</strong> — Estado: ${status}`;
+  if (msg) msg.innerHTML = `Monitoreando: <strong>${name}</strong> â€” Estado: ${status}`;
 }
 
-/* ── COORDINACIÓN ──────────────────────────────────────────── */
+/* â”€â”€ COORDINACIÃ“N â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function confirmTask(btn, name, task) {
-  btn.textContent = "✓ Completado";
+  btn.textContent = "âœ“ Completado";
   btn.classList.add("done");
   btn.disabled = true;
   const msg = document.getElementById("taskConfirmMsg");
   if (msg) {
     msg.style.display = "block";
-    msg.innerHTML = `<strong>✅ ${name}</strong> confirmó: "${task === 'gas' ? 'Llave de gas cortada' : task === 'luz' ? 'Electricidad cortada' : 'Evacuación iniciada'}" — Notificado al grupo.`;
+    msg.innerHTML = `<strong>âœ… ${name}</strong> confirmÃ³: "${task === 'gas' ? 'Llave de gas cortada' : task === 'luz' ? 'Electricidad cortada' : 'EvacuaciÃ³n iniciada'}" â€” Notificado al grupo.`;
   }
-  showToast(`✅ Tarea confirmada por ${name}`);
+  showToast(`âœ… Tarea confirmada por ${name}`);
 }
 
 function sendChatMsg() {
@@ -576,7 +576,7 @@ function sendChatMsg() {
   if (!input || !box || !input.value.trim()) return;
   const bubble = document.createElement("div");
   bubble.className = "chat-bubble sent";
-  bubble.textContent = "Tú: " + input.value.trim();
+  bubble.textContent = "TÃº: " + input.value.trim();
   box.appendChild(bubble);
   box.scrollTop = box.scrollHeight;
   input.value = "";
@@ -587,21 +587,21 @@ function sendQuick(msg) {
   if (!box) return;
   const bubble = document.createElement("div");
   bubble.className = "chat-bubble sent";
-  bubble.textContent = "Tú: " + msg;
+  bubble.textContent = "TÃº: " + msg;
   box.appendChild(bubble);
   box.scrollTop = box.scrollHeight;
 }
 
 function markSupplyDone() {
   const alert = document.getElementById("supplyAlertDemo");
-  if (alert) { alert.style.background = "rgba(46,197,182,.12)"; alert.querySelector("span.sa-icon").textContent = "✅"; alert.querySelector("strong").textContent = "Agua embotellada — comprada"; }
-  showToast("✅ Suministro registrado. Mochila actualizada.");
+  if (alert) { alert.style.background = "rgba(46,197,182,.12)"; alert.querySelector("span.sa-icon").textContent = "âœ…"; alert.querySelector("strong").textContent = "Agua embotellada â€” comprada"; }
+  showToast("âœ… Suministro registrado. Mochila actualizada.");
 }
 
 function registerExpense() {
   const concept = document.getElementById("expConcept")?.value.trim();
   const amount  = document.getElementById("expAmount")?.value.trim();
-  if (!concept || !amount) { showToast("⚠️ Completa concepto y monto"); return; }
+  if (!concept || !amount) { showToast("âš ï¸ Completa concepto y monto"); return; }
   const list = document.getElementById("expenseList");
   if (!list) return;
   const item = document.createElement("div");
@@ -610,20 +610,20 @@ function registerExpense() {
   list.appendChild(item);
   document.getElementById("expConcept").value = "";
   document.getElementById("expAmount").value  = "";
-  showToast(`✅ Gasto registrado: ${concept} — S/ ${amount}`);
+  showToast(`âœ… Gasto registrado: ${concept} â€” S/ ${amount}`);
 }
 
 function simulateIntrusion() {
   const status = document.getElementById("intrusionStatus");
   if (!status) return;
-  status.innerHTML = `<span class="id-dot red"></span><div><strong style="color:var(--alert)">⚠ Acceso no autorizado detectado</strong><small>Pasadizo norte — 23:42 hrs</small></div>`;
-  showToast("🚨 Alerta de intruso en pasadizo norte — piso 3");
+  status.innerHTML = `<span class="id-dot red"></span><div><strong style="color:var(--alert)">âš  Acceso no autorizado detectado</strong><small>Pasadizo norte â€” 23:42 hrs</small></div>`;
+  showToast("ðŸš¨ Alerta de intruso en pasadizo norte â€” piso 3");
   setTimeout(() => {
     status.innerHTML = `<span class="id-dot green"></span><div><strong>Piso seguro</strong><small>Falsa alarma descartada</small></div>`;
   }, 4000);
 }
 
-/* ── MOCHILA INTERACTIVA ────────────────────────────────────── */
+/* â”€â”€ MOCHILA INTERACTIVA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function initBSMTabs() {
   const bar = document.getElementById("bsmTabBar");
   if (!bar) return;
@@ -653,19 +653,19 @@ function updateBackpack() {
     scoreValue.textContent = newScore;
     const scoreLabel = document.getElementById("scoreLabel");
     if (scoreLabel) {
-      if (newScore >= 80)      scoreLabel.textContent = "🟦 Usuario altamente preparado";
-      else if (newScore >= 60) scoreLabel.textContent = "🟨 Usuario preparado";
-      else                     scoreLabel.textContent = "🟥 Necesita mejorar";
+      if (newScore >= 80)      scoreLabel.textContent = "ðŸŸ¦ Usuario altamente preparado";
+      else if (newScore >= 60) scoreLabel.textContent = "ðŸŸ¨ Usuario preparado";
+      else                     scoreLabel.textContent = "ðŸŸ¥ Necesita mejorar";
     }
   }
 }
 
-/* ── QUIZ DE SEGURIDAD ──────────────────────────────────────── */
+/* â”€â”€ QUIZ DE SEGURIDAD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const QUIZ = [
-  { q: "¿Qué hacer durante un sismo?", opts: ["Correr hacia la calle","Ubicarse bajo una mesa resistente","Usar el ascensor","Abrir todas las ventanas"], a: 1 },
-  { q: "¿Cuántas horas debe cubrir una mochila de emergencia?", opts: ["24 horas","48 horas","72 horas","96 horas"], a: 2 },
-  { q: "¿Cuál es el número de los bomberos en Perú?", opts: ["105","106","116","115"], a: 2 },
-  { q: "Si hueles gas en tu vivienda, ¿qué haces primero?", opts: ["Encender la luz para ver mejor","Abrir ventanas y evacuar","Llamar desde adentro","Apagar el gas con agua"], a: 1 },
+  { q: "Â¿QuÃ© hacer durante un sismo?", opts: ["Correr hacia la calle","Ubicarse bajo una mesa resistente","Usar el ascensor","Abrir todas las ventanas"], a: 1 },
+  { q: "Â¿CuÃ¡ntas horas debe cubrir una mochila de emergencia?", opts: ["24 horas","48 horas","72 horas","96 horas"], a: 2 },
+  { q: "Â¿CuÃ¡l es el nÃºmero de los bomberos en PerÃº?", opts: ["105","106","116","115"], a: 2 },
+  { q: "Si hueles gas en tu vivienda, Â¿quÃ© haces primero?", opts: ["Encender la luz para ver mejor","Abrir ventanas y evacuar","Llamar desde adentro","Apagar el gas con agua"], a: 1 },
   { q: "Si el pasillo tiene humo en un incendio, debes:", opts: ["Correr erguido","Desplazarte agachado","Abrir ventanas","Esperar en el cuarto"], a: 1 }
 ];
 let quizIdx = 0, quizScore = 0;
@@ -719,14 +719,14 @@ function showQuizResult() {
   const score  = document.getElementById("quizFinalScore");
   if (area)   area.style.display   = "none";
   if (result) result.style.display = "block";
-  if (score)  score.textContent    = `¡Puntaje: ${quizScore}/${QUIZ.length}!`;
+  if (score)  score.textContent    = `Â¡Puntaje: ${quizScore}/${QUIZ.length}!`;
   if (quizScore >= 4) {
     const badge = document.getElementById("badgeGrid");
     if (badge) {
       const locked = badge.querySelector(".badge-item.locked");
       if (locked) locked.classList.replace("locked", "earned");
     }
-    showToast("🏅 ¡Medalla desbloqueada: Experto en seguridad!");
+    showToast("ðŸ… Â¡Medalla desbloqueada: Experto en seguridad!");
   }
 }
 
@@ -739,11 +739,11 @@ function resetQuiz() {
   renderQuestion();
 }
 
-/* ── SIMULACRO ──────────────────────────────────────────────── */
+/* â”€â”€ SIMULACRO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 let drillInterval = null, drillSeconds = 0, drillStep = 0;
 const DRILL_STEPS = [
-  "Paso 1: Activa el botón SOS en tu teléfono",
-  "Paso 2: Confirma tu rol (gas, luz o evacuación)",
+  "Paso 1: Activa el botÃ³n SOS en tu telÃ©fono",
+  "Paso 2: Confirma tu rol (gas, luz o evacuaciÃ³n)",
   "Paso 3: Notifica a tus roommates y baja por las escaleras",
   "Paso 4: Llega al punto de encuentro y reporta 'Estoy a salvo'"
 ];
@@ -793,7 +793,7 @@ function endDrill(completed) {
   if (modal) modal.style.display = "none";
   if (completed) {
     const min = Math.floor(drillSeconds / 60), sec = drillSeconds % 60;
-    showToast(`🏁 Simulacro completado en ${min}:${String(sec).padStart(2,"0")} min. ¡Tiempo registrado!`);
+    showToast(`ðŸ Simulacro completado en ${min}:${String(sec).padStart(2,"0")} min. Â¡Tiempo registrado!`);
   }
 }
 
@@ -806,14 +806,14 @@ function closeTutorial() {
   if (modal) modal.style.display = "none";
 }
 
-/* ── VISTA CONTACTO/FAMILIA ─────────────────────────────────── */
+/* â”€â”€ VISTA CONTACTO/FAMILIA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function famConfirm() {
-  showFamFeedback("✅ Alerta leída — Sofía sabe que estás en camino", "ok");
-  showToast("Confirmación enviada al residente");
+  showFamFeedback("âœ… Alerta leÃ­da â€” SofÃ­a sabe que estÃ¡s en camino", "ok");
+  showToast("ConfirmaciÃ³n enviada al residente");
 }
-function famCall()    { showFamFeedback("📞 Llamando a Sofía... (+51 987 654 321)", "ok"); showToast("Marcando número de Sofía..."); }
-function famRoute()   { showFamFeedback("🗺️ Ruta calculada: 12 min en auto desde tu ubicación", "ok"); showToast("Ruta abierta hacia Av. Larco 432"); }
-function famMedical() { showFamFeedback("🩺 Sofía · Sangre: O+ · Alergias: Ninguna · Asma leve", "ok"); showToast("Ficha médica de Sofía cargada"); }
+function famCall()    { showFamFeedback("ðŸ“ž Llamando a SofÃ­a... (+51 987 654 321)", "ok"); showToast("Marcando nÃºmero de SofÃ­a..."); }
+function famRoute()   { showFamFeedback("ðŸ—ºï¸ Ruta calculada: 12 min en auto desde tu ubicaciÃ³n", "ok"); showToast("Ruta abierta hacia Av. Larco 432"); }
+function famMedical() { showFamFeedback("ðŸ©º SofÃ­a Â· Sangre: O+ Â· Alergias: Ninguna Â· Asma leve", "ok"); showToast("Ficha mÃ©dica de SofÃ­a cargada"); }
 
 function showFamFeedback(msg, type) {
   const fb = document.getElementById("famFeedback");
@@ -834,7 +834,7 @@ function showFamHistory() {
   document.querySelectorAll(".fam-tab-btn").forEach((b,i) => b.classList.toggle("active", i===1));
 }
 
-/* ── DASHBOARD GESTOR ───────────────────────────────────────── */
+/* â”€â”€ DASHBOARD GESTOR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const RESIDENTS = [
   {name:"Ana M.", floor:1}, {name:"Luis R.", floor:1}, {name:"Karen P.", floor:1},
   {name:"Jorge S.", floor:2}, {name:"Martina", floor:2}, {name:"Roberto", floor:2},
@@ -859,7 +859,7 @@ function renderResidentGrid() {
   if (!grid) return;
   grid.innerHTML = RESIDENTS.map((r, i) => {
     const state = residentStates[i];
-    return `<div class="rg-resident" onclick="toggleResidentSafe(${i})" title="Piso ${r.floor} · Click para marcar a salvo">
+    return `<div class="rg-resident" onclick="toggleResidentSafe(${i})" title="Piso ${r.floor} Â· Click para marcar a salvo">
       <div class="rg-avatar">${r.name.charAt(0)}</div>
       <span class="rg-name">${r.name}</span>
       <div class="rg-dot ${state}"></div>
@@ -877,7 +877,7 @@ function toggleResidentSafe(i) {
 function markAllSafe() {
   RESIDENTS.forEach((_, i) => { residentStates[i] = "safe"; });
   renderResidentGrid();
-  showToast("✅ Todos los residentes marcados a salvo");
+  showToast("âœ… Todos los residentes marcados a salvo");
 }
 
 function resetResidents() {
@@ -903,9 +903,9 @@ function initGestorTabs() {
 function sendMassAlert() {
   const msg    = document.getElementById("massMsg")?.value.trim();
   const sector = document.getElementById("sectorSelect")?.value;
-  if (!msg) { showToast("⚠️ Escribe un mensaje antes de emitir la alerta"); return; }
+  if (!msg) { showToast("âš ï¸ Escribe un mensaje antes de emitir la alerta"); return; }
   const dest = sector === "all" ? "todo el edificio" : "sector: " + sector;
-  showToast(`🚨 Alerta emitida a ${dest}: "${msg.substring(0,40)}..."`);
+  showToast(`ðŸš¨ Alerta emitida a ${dest}: "${msg.substring(0,40)}..."`);
   document.getElementById("massMsg").value = "";
 }
 
@@ -915,7 +915,7 @@ function moveMeetingPoint() {
   const positions = [{bottom:"12px",right:"16px"},{bottom:"50px",left:"20px"},{top:"10px",right:"20px"}];
   const pos = positions[Math.floor(Math.random()*positions.length)];
   Object.assign(pin.style, {bottom:"auto",right:"auto",top:"auto",left:"auto",...pos});
-  showToast("📍 Punto de encuentro actualizado en el mapa");
+  showToast("ðŸ“ Punto de encuentro actualizado en el mapa");
 }
 
 function assignBrigadier(btn, name) {
@@ -924,12 +924,12 @@ function assignBrigadier(btn, name) {
   item.classList.replace("pending", "active");
   const avatar = item.querySelector(".brig-avatar");
   if (avatar) avatar.style.background = "var(--support)";
-  btn.replaceWith(Object.assign(document.createElement("span"), { className:"brig-badge", textContent:"🛡️ Brigadista" }));
-  showToast(`✅ ${name} asignado como brigadista del edificio`);
+  btn.replaceWith(Object.assign(document.createElement("span"), { className:"brig-badge", textContent:"ðŸ›¡ï¸ Brigadista" }));
+  showToast(`âœ… ${name} asignado como brigadista del edificio`);
 }
 
 function addEquipment(el) {
-  const types  = ["🧯 PQS","🚿 Manguera","🪣 Balde"];
+  const types  = ["ðŸ§¯ PQS","ðŸš¿ Manguera","ðŸª£ Balde"];
   const choice = types[Math.floor(Math.random()*types.length)];
   const newEl  = document.createElement("div");
   newEl.className = "em-item";
@@ -939,43 +939,22 @@ function addEquipment(el) {
 }
 
 function exportPDF() {
-  showToast("📄 Generando PDF INDECI con resultados del simulacro mayo 2026...");
-  setTimeout(() => showToast("✅ PDF descargado: Reporte_Simulacro_May2026.pdf"), 1800);
+  showToast("ðŸ“„ Generando PDF INDECI con resultados del simulacro mayo 2026...");
+  setTimeout(() => showToast("âœ… PDF descargado: Reporte_Simulacro_May2026.pdf"), 1800);
 }
 
 function submitDamageReport() {
   const floor = document.getElementById("damageFloor")?.value;
   const desc  = document.getElementById("damageDesc")?.value.trim();
-  if (!desc) { showToast("⚠️ Describe el daño antes de enviar"); return; }
-  showToast(`📋 Reporte enviado al ingeniero: ${floor} — ${desc.substring(0,30)}...`);
+  if (!desc) { showToast("âš ï¸ Describe el daÃ±o antes de enviar"); return; }
+  showToast(`ðŸ“‹ Reporte enviado al ingeniero: ${floor} â€” ${desc.substring(0,30)}...`);
   document.getElementById("damageDesc").value = "";
   document.getElementById("photoMsg").textContent = "";
 }
 
 function simulatePhotoUpload() {
   const msg = document.getElementById("photoMsg");
-  if (msg) msg.textContent = "📷 foto_grieta_col_norte.jpg adjuntada ✓";
-  showToast("Foto adjuntada al reporte de daños");
+  if (msg) msg.textContent = "ðŸ“· foto_grieta_col_norte.jpg adjuntada âœ“";
+  showToast("Foto adjuntada al reporte de daÃ±os");
 }
 
-function dismissFault(btn) {
-  const item = btn.closest(".fq-item");
-  if (item) { item.style.opacity = ".4"; item.style.pointerEvents = "none"; }
-  showToast("Avería marcada como atendida ✓");
-}
-
-function addFault() {
-  const faults = [
-    {txt:"Corte de agua caliente — Piso 4", cls:"medium", dot:"med"},
-    {txt:"Cable expuesto en pasadizo — Piso 2", cls:"high", dot:""},
-    {txt:"Fuga en tubo de cocina — Piso 1", cls:"medium", dot:"med"}
-  ];
-  const f    = faults[Math.floor(Math.random()*faults.length)];
-  const list = document.getElementById("faultQueue");
-  if (!list) return;
-  const item = document.createElement("div");
-  item.className = "fq-item " + f.cls;
-  item.innerHTML = `<span class="fq-dot ${f.dot}"></span><div><strong>${f.txt}</strong><small>Ahora · Reportado por residente</small></div><button class="btn btn-sm btn-primary" onclick="dismissFault(this)">Atender</button>`;
-  list.prepend(item);
-  showToast("🔔 Nueva avería recibida en cola de atención");
-}
