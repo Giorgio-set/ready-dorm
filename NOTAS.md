@@ -12,3 +12,4 @@ IHC y Tecnologias Moviles - UPC 202610
 2026-04-29 Junior: Mejorar visibilidad del indicador de foco
 2026-04-29 Junior: Corregir redireccion en registro exitoso
 2026-04-30 Gricel: Agregar transiciones y efectos hover a tarjetas
+2026-04-30 Patrik: Corregir caso borde del reset del temporizador
