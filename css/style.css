@@ -1588,3 +1588,133 @@ p { color: var(--muted); }
 .auth-body { background: var(--surface-alt); min-height: 100vh; }
 
 .auth-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  min-height: 100vh;
+}
+
+.auth-visual {
+  background:
+    radial-gradient(600px 400px at 0% 0%, rgba(46,197,182,0.22), transparent 60%),
+    radial-gradient(500px 350px at 100% 100%, rgba(244,212,91,0.10), transparent 60%),
+    linear-gradient(160deg, var(--primary-deep), var(--primary));
+  color: #fff;
+  padding: 56px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.auth-visual::before {
+  content: "";
+  position: absolute;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(250,106,99,0.16), transparent 70%);
+  top: 30%; right: -100px;
+}
+.auth-brand {
+  background: #fff;
+  padding: 8px 16px 8px 12px;
+  border-radius: 14px;
+  width: max-content;
+  box-shadow: var(--shadow-md);
+  z-index: 1;
+}
+.auth-brand .brand-icon { width: 32px; height: 32px; }
+.auth-brand .brand-name { color: var(--primary); font-size: 1.05rem; }
+
+.auth-message { position: relative; z-index: 1; max-width: 460px; }
+.auth-message h1 {
+  color: #fff;
+  margin: 16px 0 16px;
+  font-size: clamp(2rem, 3.4vw, 2.7rem);
+}
+.auth-message p { color: rgba(255,255,255,0.78); font-size: 1rem; }
+
+.auth-status-card {
+  margin-top: 32px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  backdrop-filter: blur(4px);
+  position: relative;
+  z-index: 1;
+  max-width: 460px;
+}
+.auth-status-card small {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.6);
+  font-weight: 600;
+}
+.auth-status-card strong {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 4px;
+}
+.auth-status-card > span {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--support);
+  color: #08383A;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 1.05rem;
+  box-shadow: 0 0 0 8px rgba(46,197,182,0.18);
+}
+
+.register-benefits {
+  margin-top: 28px;
+  display: grid;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+  max-width: 460px;
+}
+.register-benefits span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.94rem;
+  color: rgba(255,255,255,0.88);
+}
+.register-benefits span::before {
+  content: "âœ“";
+  width: 22px; height: 22px;
+  background: var(--support);
+  color: #08383A;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+}
+
+.auth-footer-meta {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  position: relative;
+  z-index: 1;
+}
+
+.auth-form-panel {
+  background: var(--surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px;
+}
+.auth-form-card {
+  background: #fff;
