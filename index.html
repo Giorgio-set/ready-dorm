@@ -1338,3 +1338,103 @@
               <span class="map-area area-one">Distrito San Miguel</span>
               <span class="map-area area-two">Av. La Marina</span>
               <span class="map-area area-three">Zona universitaria</span>
+              <span class="map-area area-four">Parque de apoyo</span>
+
+              <div class="map-block block-one">Residencial</div>
+              <div class="map-block block-two">Comercio</div>
+              <div class="map-block block-three">Campus</div>
+              <div class="map-block block-four">Centro vecinal</div>
+
+              <div class="road road-h road-h1"><span>Av. La Marina</span></div>
+              <div class="road road-h road-h2"><span>Av. Sucre</span></div>
+              <div class="road road-h road-h3"><span>Jr. JunÃ­n</span></div>
+              <div class="road road-h road-h4"><span>Av. Costanera</span></div>
+              <div class="road road-h road-h5"><span>MalecÃ³n</span></div>
+
+              <div class="road road-v road-v1"><span>Jr. Castilla</span></div>
+              <div class="road road-v road-v2"><span>Av. Universitaria</span></div>
+              <div class="road road-v road-v3"><span>Jr. Tacna</span></div>
+              <div class="road road-v road-v4"><span>Calle 1</span></div>
+              <div class="road road-v road-v5"><span>Calle 2</span></div>
+
+              <svg class="map-route-svg" viewBox="0 0 100 100" aria-hidden="true" preserveAspectRatio="none">
+                <path id="routeTrail" class="route-trail" d="M16 66 H64 V34" />
+                <path id="activeRoute" class="active-route" d="M16 66 H64 V34" />
+              </svg>
+
+              <div class="map-control-stack" aria-label="Controles simulados del mapa">
+                <button id="zoomInMap" type="button" aria-label="Acercar mapa">+</button>
+                <button id="zoomOutMap" type="button" aria-label="Alejar mapa">âˆ’</button>
+                <button id="resetMapView" type="button" aria-label="Vista inicial">âŒ‚</button>
+              </div>
+
+              <div class="map-compass" aria-hidden="true">N</div>
+              <div class="map-scale" aria-hidden="true"><span></span>500 m</div>
+
+              <div class="user-location" id="userMarker">
+                <span></span><strong>Tu ubicaciÃ³n</strong>
+              </div>
+
+              <button class="clinic-pin pin-one active" data-clinic-id="0" aria-label="ClÃ­nica ReadyCare 24h"><span>+</span><small>0.8 km</small></button>
+              <button class="clinic-pin pin-two" data-clinic-id="1" aria-label="ClÃ­nica San Pablo"><span>+</span><small>1.6 km</small></button>
+              <button class="clinic-pin pin-three" data-clinic-id="2" aria-label="Centro MÃ©dico Universitario"><span>+</span><small>2.1 km</small></button>
+              <button class="clinic-pin pin-four" data-clinic-id="3" aria-label="Hospital de Emergencias"><span>+</span><small>2.6 km</small></button>
+              <button class="clinic-pin pin-five" data-clinic-id="4" aria-label="PoliclÃ­nico Magdalena"><span>+</span><small>3.2 km</small></button>
+
+              <article id="mapInfoCard" class="map-info-card" aria-live="polite">
+                <span class="map-info-tag">Ruta recomendada</span>
+                <h3>ClÃ­nica ReadyCare 24h</h3>
+                <p>Av. La Marina 1235, San Miguel</p>
+                <div class="map-info-metrics">
+                  <span><strong id="routeDistance">0.8 km</strong> distancia</span>
+                  <span><strong id="routeTime">5 min</strong> llegada</span>
+                </div>
+              </article>
+            </div>
+
+            <div class="map-status-row">
+              <span><strong id="nearestClinicName">ReadyCare 24h</strong> mÃ¡s cercana</span>
+              <span><strong id="mapZoomLabel">100%</strong> zoom simulado</span>
+              <span><strong>Sin API</strong> mapa emulado</span>
+            </div>
+            <p class="map-note">Los puntos, distancias, controles y rutas son simulados para mostrar el mÃ³dulo sin servicios externos.</p>
+          </div>
+
+          <!-- Lista lateral de clÃ­nicas -->
+          <aside class="clinic-list-panel">
+            <div class="clinic-list-header">
+              <h3>Centros disponibles</h3>
+              <span id="clinicCount">5 resultados</span>
+            </div>
+            <div class="clinic-filters" aria-label="Filtros simulados de clÃ­nicas">
+              <button class="map-filter active" type="button" data-filter="all">Todas</button>
+              <button class="map-filter" type="button" data-filter="emergency">24h</button>
+              <button class="map-filter" type="button" data-filter="close">MÃ¡s cerca</button>
+              <button class="map-filter" type="button" data-filter="general">General</button>
+            </div>
+            <div id="clinicList" class="clinic-list"></div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= CTA FINAL ============= -->
+    <section class="cta-section">
+      <div class="container cta-card reveal">
+        <div>
+          <span class="section-kicker light">Comienza ahora</span>
+          <h2>Haz que tu vivienda estÃ© lista antes de la emergencia.</h2>
+          <p>Registra tu espacio, agrega contactos, crea rutas y revisa tu checklist de seguridad en minutos.</p>
+        </div>
+        <a href="registro.html" class="btn btn-primary btn-large">Registrarme en ReadyDorm</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============= FOOTER ============= -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#inicio">
