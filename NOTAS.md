@@ -17,3 +17,4 @@ IHC y Tecnologias Moviles - UPC 202610
 2026-04-30 Gricel: Verificar contraste de colores en seccion emergencia
 2026-05-01 Patrik: Agregar debounce al input de busqueda del mapa
 2026-05-02 Victor: Corregir animacion hover del CTA en hero
+2026-05-02 Gricel: Finalizar valores de espaciado y margenes
