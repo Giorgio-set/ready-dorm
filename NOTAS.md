@@ -18,3 +18,4 @@ IHC y Tecnologias Moviles - UPC 202610
 2026-05-01 Patrik: Agregar debounce al input de busqueda del mapa
 2026-05-02 Victor: Corregir animacion hover del CTA en hero
 2026-05-02 Gricel: Finalizar valores de espaciado y margenes
+2026-05-05 Junior: Corregir altura de viewport movil en login
