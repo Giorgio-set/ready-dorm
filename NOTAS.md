@@ -24,3 +24,4 @@ IHC y Tecnologias Moviles - UPC 202610
 2026-05-06 Patrik: Eliminar console.log de depuracion
 2026-05-07 Victor: Ampliar area de clic del CTA en movil
 2026-05-07 Patrik: Suavizar animacion de presion del boton SOS
+2026-05-07 Abraham: Ajustar profundidad de sombra hover en tarjetas
