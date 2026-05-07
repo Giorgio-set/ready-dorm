@@ -22,3 +22,4 @@ IHC y Tecnologias Moviles - UPC 202610
 2026-05-05 Gricel: Mejorar visualizacion del progreso en gamificacion
 2026-05-06 Victor: Mejorar rendimiento de carga de imagen hero
 2026-05-06 Patrik: Eliminar console.log de depuracion
+2026-05-07 Victor: Ampliar area de clic del CTA en movil
