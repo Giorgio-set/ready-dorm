@@ -28,3 +28,4 @@ IHC y Tecnologias Moviles - UPC 202610
 2026-05-07 Abraham: Finalizar estados visuales del checklist mochila
 2026-05-08 Patrik: Ajustar timing de animacion de respuesta del quiz
 2026-05-08 Victor: Revision de calidad de codigo pre-entrega
+2026-05-08 Junior: Agregar atributos autocomplete a campos de formulario
