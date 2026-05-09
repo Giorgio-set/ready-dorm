@@ -12,3 +12,10 @@ UPC - IHC y Tecnologias Moviles 202610
 
 ## Stack
 - HTML5 semantico, CSS3 custom properties, JavaScript ES6+
+
+## Progreso - Semana 4
+- Secciones emergencia completas (sismo, incendio, gas)
+- Mochila inteligente con checklist interactivo
+- Quiz de preparacion ante emergencias
+- Panel gestor y vista de perfil de usuario
+- Mapa interactivo de clinicas cercanas
