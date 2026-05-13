@@ -30,3 +30,4 @@ IHC y Tecnologias Moviles - UPC 202610
 2026-05-08 Victor: Revision de calidad de codigo pre-entrega
 2026-05-08 Junior: Agregar atributos autocomplete a campos de formulario
 2026-05-12 Victor: Resolver layout de grid responsivo en tablets
+2026-05-12 Abraham: Completar pulido de CSS en todas las secciones
