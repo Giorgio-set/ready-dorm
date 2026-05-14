@@ -34,3 +34,4 @@ IHC y Tecnologias Moviles - UPC 202610
 2026-05-13 Victor: Animacion hover y transiciones de enlaces footer
 2026-05-13 Abraham: Organizar declaraciones de propiedades CSS custom
 2026-05-13 Patrik: Congelamiento de codigo previo a examenes parciales
+2026-05-14 Gricel: Ajustes finales de tipografia y espaciado
