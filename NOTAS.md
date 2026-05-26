@@ -37,3 +37,4 @@ IHC y Tecnologias Moviles - UPC 202610
 2026-05-14 Gricel: Ajustes finales de tipografia y espaciado
 2026-05-14 Junior: Agregar atributos de validacion HTML5 correctos
 2026-05-14 Patrik: Implementar trigger de activacion por voz del SOS
+2026-05-26 Victor: Refinamiento de interacciones en hero post-examen
