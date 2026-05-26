@@ -19,3 +19,7 @@ UPC - IHC y Tecnologias Moviles 202610
 - Quiz de preparacion ante emergencias
 - Panel gestor y vista de perfil de usuario
 - Mapa interactivo de clinicas cercanas
+
+## Despliegue
+Netlify - actualizacion automatica desde rama main.
+Repositorio: github.com/Giorgio-set/ready-dorm
