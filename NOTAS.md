@@ -39,3 +39,4 @@ IHC y Tecnologias Moviles - UPC 202610
 2026-05-14 Patrik: Implementar trigger de activacion por voz del SOS
 2026-05-26 Victor: Refinamiento de interacciones en hero post-examen
 2026-05-27 Patrik: Limpieza final de codigo y documentacion inline
+2026-05-27 Patrik: Mejoras de rendimiento en funciones JS post-examen
